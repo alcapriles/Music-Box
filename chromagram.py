@@ -1,16 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import scipy.signal as signal2
+import scipy.signal as sg
 import math
 import wave
 import pylab
 import operator
-import pkgutil
-
-#import pkgutil
-#for m in pkgutil.iter_modules():
-#    print (m)
-
 
 #FFT Size
 Nfft=2048
@@ -59,14 +53,14 @@ plt.plot(signal)
 #Normalize
 #signal = signal/signal.max();
 
-#signal=signal2.resample(signal,int(round(len(signal)*fr)/float(fs)),window=None)
+#signal=sg.resample(signal,int(round(len(signal)*fr)/float(fs)),window=None)
 
 #downsample with low-pass filtering
-#signal=signal2.resample(signal, len(signal)/df)
+#signal=sg.resample(signal, len(signal)/df)
 
 #Starting DownSample signal using Decimation
-b = signal2.firwin(30, 1.0/df)
-signal = signal2.lfilter(b, 1., signal)
+b = sg.firwin(30, 1.0/df)
+signal = sg.lfilter(b, 1., signal)
 signal = signal.swapaxes(0,-1)[30+1::4].swapaxes(0,-1)
 
 plt.figure(2)
