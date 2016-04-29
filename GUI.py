@@ -19,16 +19,19 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         
 #       self.setWindowIcon(QtGui.QIcon('arquivo.png'))        Essa linha serve para quando tivermos um ícone pronto para o app.
         
-        btn = QtGui.QPushButton('Gravar', self)
-        btn.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
-        btn.resize(75,50)
-        btn.move(25, 50)   
+        gravar = QtGui.QPushButton('Gravar', self)
+        gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
+        gravar.resize(100,40)
+        gravar.move(25, 50)   
         self.show()
-              
+
+        gravar.clicked.connect(self.gravar_clicked)          
+        
         salvar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Salvar', self)
         salvar.setStatusTip('Salvar o arquivo')
         salvar.setShortcut('Ctrl+S')
 #        salvar.triggered.connect(Ação)
+#        salvar.clicked.connect(self.confirm_action) 
         
         imprimir= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Imprimir', self)
         imprimir.setStatusTip('Imprimir o arquivo')
@@ -66,6 +69,45 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
 #        elif():
 #            self.statusBar().showMessage('Carregando')
     
+    def send_email(self):
+        textEdit = QtGui.QTextEdit()
+        self.setCentralWidget(textEdit)
+        
+    def confirm_action(self): # Quando uma opção for selecionada, essa função vai ser ativada.
+        sender = self.sender() # Informa qual botão foi clicado.
+        okButton = QtGui.QPushButton("OK")
+        cancelButton = QtGui.QPushButton("Cancel")
+
+        hbox = QtGui.QHBoxLayout()
+        hbox.addStretch(1)
+        hbox.addWidget(okButton)
+        hbox.addWidget(cancelButton)
+
+        vbox = QtGui.QVBoxLayout()
+        vbox.addStretch(1)
+        vbox.addLayout(hbox)
+        self.setLayout(vbox) 
+    
+    def gravar_clicked(self):
+        sender = self.sender()
+        self.statusBar().showMessage(sender.text() + ' foi pressionado') #Exemplo até agora
+        
+    def loading(self): # Enquanto estiver carregando vai mostrar uma barra de progresso na tela.
+        self.pbar = QtGui.QProgressBar(self)
+        self.pbar.setGeometry(30, 40, 200, 25)
+        
+        self.timer = QtCore.QBasicTimer()
+        self.step = 0
+        
+        self.timer.start(100, self)
+        
+        if self.step >= 100: # Exemplo, aqui vai ser a condição de ter acabado de carregar ou não.
+            self.timer.stop()
+            self.btn.setText('Finished')
+            return
+            
+        self.step = self.step + 1
+        self.pbar.setValue(self.step)
         
 def main():
     
