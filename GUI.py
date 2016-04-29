@@ -10,9 +10,7 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         self.initUI()
         
         
-    def initUI(self):
-        self.statusBar().showMessage('Carregando')
-        
+    def initUI(self):        
 #        self.setGeometry(250, 100, 800, 450) # Primeiros dois argumentos: posição da janela; depois os outros dois são o tamanho
         
         self.resize(800,450)       
@@ -26,13 +24,34 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         btn.resize(75,50)
         btn.move(25, 50)   
         self.show()
+              
+        salvar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Salvar', self)
+        salvar.setStatusTip('Salvar o arquivo')
+        salvar.setShortcut('Ctrl+S')
+#        salvar.triggered.connect(Ação)
         
+        imprimir= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Imprimir', self)
+        imprimir.setStatusTip('Imprimir o arquivo')
+        imprimir.setShortcut('Ctrl+P')
+#        imprimir.triggered.connect(Ação)
+    
+        compartilhar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Compartilhar', self)
+        compartilhar.setStatusTip('Compartilhar o arquivo')
+        compartilhar.setShortcut('Ctrl+F')
+#        compartilhar.triggered.connect(Ação)        
+        
+        enviar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Enviar', self)
+        enviar.setStatusTip('Enviar o arquivo')
+        enviar.setShortcut('Ctrl+E')
+#        enviar.triggered.connect(Ação)        
+
         menubar = self.menuBar() # Aqui criei um menu com as opções de o que fazer com o arquvo gravado.
-        fileMenu = menubar.addMenu('Opções')
-        fileMenu.addAction('Salvar')
-        fileMenu.addAction('Imprimir')
-        fileMenu.addAction('Compartilhar')        
-        fileMenu.addAction('Enviar')
+        fileMenu = menubar.addMenu('&Opções')
+        fileMenu.addAction(salvar) #Adiciona a opção salvar dentro do menu "Opções"
+        fileMenu.addAction(imprimir)
+        fileMenu.addAction(compartilhar)
+        fileMenu.addAction(enviar)
+        self.statusBar() #Possibilita que o StatusTip apareça na tela.
 
     def center(self):
         
