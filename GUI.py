@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 
 
 class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da programação.
@@ -17,12 +17,14 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         self.center()   #Coloca no centro a partir da resolução da tela encontrada.    
         self.setWindowTitle('Music Box')
         
-#       self.setWindowIcon(QtGui.QIcon('arquivo.png'))        Essa linha serve para quando tivermos um ícone pronto para o app.
-        
+#       self.setWindowIcon(QtGui.QIcon('arquivo.png'))        Essa linha serve para quando tivermos um ícone pronto para o app.     
+     
+#        self.paint_gravar()
         gravar = QtGui.QPushButton('Gravar', self)
         gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
-        gravar.resize(100,40)
-        gravar.move(25, 50)   
+#        gravar.resize(100,40)
+        gravar.adjustSize() 
+        gravar.move(150, 225)   
         self.show()
 
         gravar.clicked.connect(self.gravar_clicked)          
@@ -56,6 +58,11 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         fileMenu.addAction(enviar)
         self.statusBar() #Possibilita que o StatusTip apareça na tela.
 
+        self.label_partitura = QtGui.QLabel(self)
+        self.lbl.setText('Partitura')
+        self.label_partitura.move(300, 25)
+        self.lbl.adjustSize()
+        
     def center(self):
         
         qr = self.frameGeometry()
@@ -109,11 +116,70 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         self.step = self.step + 1
         self.pbar.setValue(self.step)
         
+    def open_images(self): # Pensei que poderíamos precisar utilizar essa função para mostrar a partitura.
+        hbox = QtGui.QHBoxLayout(self)
+        pixmap = QtGui.QPixmap("arquivo.png")
+
+        lbl = QtGui.QLabel(self)
+        lbl.setPixmap(pixmap)
+
+        hbox.addWidget(lbl)
+        self.setLayout(hbox)
+#==================================================================================#       
+#    def select_language(self): DEPOIS PODEMOS MUDAR A LINGUAGEM DO PROGRAMA CONFORME A OPÇÃO SELECIONADA.
+#
+#        combo = QtGui.QComboBox(self)
+#        combo.addItem("Portuguese")
+#        combo.addItem("English")
+#        
+#        combo.move(50, 50)
+#        self.lbl.move(50, 150)
+#        
+#        combo.activated[str].connect(self.onActivated)
+#        
+#    def onActivated(self, text):
+#  
+#        self.lbl.setText(text)
+#        self.lbl.adjustSize()  
+#================================================================================#       
+#   def drawNotes(self): # Mostra na tela as notas que foram tocadas. 
+# DEPOIS COMPLETAMOS A CONDIÇÃO DO IF CONFORME O RESULTADO DA LEITURA DO CROMAGRAMA
+#        if ():
+#            self.text = ''
+#    
+#   def paintEvent(self, event): #Desenha na tela usando a função drawText
+#        qp = QtGui.QPainter()
+#        qp.begin(self)
+#        self.drawText(event, qp)
+#        qp.end()
+#        
+#    def drawText(self, event, qp): #
+#        qp.setPen(QtGui.QColor(168, 34, 3))
+#        qp.setFont(QtGui.QFont('Decorative', 10))
+#        qp.drawText(event.rect(), QtCore.Qt.AlignRight, self.text) 
+#=================================================================================#
+    def paintEvent(self, e):
+        qp = QtGui.QPainter()
+        qp.begin(self)
+        self.drawBrushes(qp)
+        qp.end()
+        
+    def drawBrushes(self, qp):
+        brush = QtGui.QBrush(QtCore.Qt.SolidPattern)
+        brush.setStyle(QtCore.Qt.VerPattern) #Do Gravar
+        qp.setBrush(brush)
+        qp.drawRect(25, 50, 325, 175)        
+        
+        brush.setStyle(QtCore.Qt.BDiagPattern) #Da Partitura
+        qp.setBrush(brush)
+        qp.drawRect(400, 100, 375, 225)
+        
 def main():
     
     app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
     ex = Example()
-    sys.exit(app.exec_())
+    ex.show()
+    sys.exit(app.exec_()) #Para de rodar a aplicação quando a janela é fechada.
 
 
 if __name__ == '__main__':
