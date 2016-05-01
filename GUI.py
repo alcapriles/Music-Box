@@ -7,10 +7,10 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
     def __init__(self):
         super(Example, self).__init__()
         
-        self.initUI()
+        self.initUI(self)
         
         
-    def initUI(self):        
+    def initUI(self, QMainWindow):        
 #        self.setGeometry(250, 100, 800, 450) # Primeiros dois argumentos: posição da janela; depois os outros dois são o tamanho
         
         self.resize(800,450)       
@@ -57,19 +57,26 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         fileMenu.addAction(compartilhar)
         fileMenu.addAction(enviar)
         self.statusBar() #Possibilita que o StatusTip apareça na tela.
-
-        self.label_partitura = QtGui.QLabel(self)
-        self.lbl.setText('Partitura')
-        self.label_partitura.move(300, 25)
-        self.lbl.adjustSize()
+#        
+#        self.centralwidget = QtGui.QWidget(QMainWindow)
+#        self.centralwidget.setObjectName("centralwidget")
+#        self.Partitura = QtGui.QGraphicsView(self.centralwidget)
+#        self.Partitura.setGeometry(400,10, 50, 50)
+#        self.Partitura.setObjectName("Partitura") 
         
+        self.label = QtGui.QLabel(self)
+        self.label.setText('Partitura')
+        self.label.setFont(QtGui.QFont('SansSerif', 14))
+        self.label.adjustSize() 
+        self.label.move(555, 80)
+        self.label.show()
     def center(self):
         
         qr = self.frameGeometry()
         cp = QtGui.QDesktopWidget().availableGeometry().center() #Isso dá informações sobre o Desktop do usuário, como a resolução da tela.
         qr.moveCenter(cp)
         self.move(qr.topLeft())
-        
+            
 #    def change_status(self):
 #        if():        
 #            self.statusBar().showMessage('Carregando')
