@@ -24,7 +24,7 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
 #        gravar.resize(100,40)
         gravar.adjustSize() 
-        gravar.move(150, 225)   
+        gravar.move(150, 200)   
         self.show()
 
         gravar.clicked.connect(self.gravar_clicked)          
@@ -66,9 +66,16 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         
         self.label = QtGui.QLabel(self)
         self.label.setText('Partitura')
-        self.label.setFont(QtGui.QFont('SansSerif', 14))
+        self.label.setFont(QtGui.QFont('SansSerif', 18))
         self.label.adjustSize() 
-        self.label.move(555, 80)
+        self.label.move(545, 75)
+        self.label.show()
+        
+        self.label = QtGui.QLabel(self)
+        self.label.setText('Recentes')
+        self.label.setFont(QtGui.QFont('SansSerif', 18))
+        self.label.adjustSize() 
+        self.label.move(135, 250)
         self.label.show()
     def center(self):
         
@@ -175,12 +182,15 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         brush = QtGui.QBrush(QtCore.Qt.SolidPattern)
         brush.setStyle(QtCore.Qt.VerPattern) #Do Gravar
         qp.setBrush(brush)
-        qp.drawRect(25, 50, 325, 175)        
+        qp.drawRect(25, 25, 325, 175)        
         
         brush.setStyle(QtCore.Qt.BDiagPattern) #Da Partitura
         qp.setBrush(brush)
         qp.drawRect(400, 100, 375, 225)
         
+        brush.setStyle(QtCore.Qt.Dense1Pattern) #Das Gravaões Recentes
+        qp.setBrush(brush)
+        qp.drawRect(25, 275, 325, 150)
 def main():
     
     app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
