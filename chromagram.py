@@ -125,6 +125,45 @@ for i in range(CS.shape[0]):
 #normalize the chromagram array
 CS= CS / CS.max()
 
+#print(CD)
+#print(CS)
+
+#print(np.shape(CS))
+#número de colunas:
+#print(len(CS[1,:]))
+
+colunas = len(CS[1,:])
+notas = "relative c' { "
+for i in range(12):
+    for j in range(colunas):
+        if CS[i,j] > 0.95:
+            if i == 0:
+                notas += 'b '
+            elif i == 1:
+                notas += 'a-sharp '
+            elif i == 2:
+                notas += 'a '
+            elif i == 3:
+                notas += 'g-sharp '
+            elif i == 4:
+                notas += 'g '
+            elif i == 5:
+                notas += 'f-sharp '
+            elif i == 6:
+                notas += 'f '
+            elif i == 7:
+                notas += 'e '
+            elif i == 8:
+                notas += 'd-sharp '
+            elif i == 9:
+                notas += 'd '
+            elif i == 10:
+                notas += 'c-sharp '
+            elif i == 11:
+                notas.append += 'c '
+notas += '}'
+print(notas)
+
 plt.figure(3)
 plt.title('Original Magnitude')
 plt.imshow(Magnitude.astype('float64'),interpolation='nearest',origin='lower',aspect='auto')
@@ -134,3 +173,4 @@ plt.title('Chromagram')
 plt.imshow(CS.astype('float64'),interpolation='nearest',origin='lower',aspect='auto')
 
 plt.show()
+
