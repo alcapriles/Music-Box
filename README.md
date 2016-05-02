@@ -1,4 +1,4 @@
 # MusicBox
 Musical score printing from audio input written in Python.
 
-The chromagram was based off of this code: https://github.com/ederwander/Chromagram/blob/master/Chromagram.py, by Eder Wander.
+The following chromagrama code was used: https://github.com/ederwander/Chromagram/blob/master/Chromagram.py, by Eder Wander.
