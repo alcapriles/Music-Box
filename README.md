@@ -1,2 +1,2 @@
 # MusicBox
-Musical score printing from audio input written in Python.
+Musical score printing from audio input application written in Python.
