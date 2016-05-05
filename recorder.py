@@ -1,5 +1,6 @@
 import pyaudio
 import wave
+from GUI import GUI
 
 class Record:
     
