@@ -9,13 +9,13 @@ import operator
 class Chromagram:
 
 	def __init__(self, Nfft, A5, nbin, st, step, fr, df):
-		Nfft=2048
-		A5=880
-		nbin=12
-		st=2**(1/float(nbin))
-		step=128
-		fr=11025
-		df=4
+		self.Nfft=2048
+		self.A5=880
+		self.nbin=12
+		self.st=2**(1/float(nbin))
+		self.step=128
+		self.fr=11025
+		self.df=4
 		
 	def lilypondInput(self, colunas, notas):
 			colunas = len(CS[1,:])
