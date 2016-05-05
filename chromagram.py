@@ -17,13 +17,14 @@ class Chromagram:
         self.fr=11025
         self.df=4
     
+    #este método encontra que notas tem no cromagrama e coloca elas na string que será o input do lilypond
     def lilypondInput(self, colunas, notas):
         colunas = len(CS[1,:])
         notas = "\\relative c' { "
         for i in range(12):
             for j in range(colunas):
-                if CS[i,j] > 0.95:
-                    if i == 0:
+                if CS[i,j] > 0.95:       #considerei que são notas só os pontos com intensidades grandes (>0.95). porém, teremos que
+                    if i == 0:           #consertar isto, pois existem notas com intensidades mais baixas
                         notas += 'b '
                     elif i == 1:
                         notas += 'a-sharp '
@@ -48,6 +49,10 @@ class Chromagram:
                     elif i == 11:
                         notas.append += 'c '
         notas += '}'
+        # o for loop olha de linha em linha e vai colocando na string as notas com maior intensidade. isso é um problema, porque
+        #ele colocou o "dó" que tava na linha 1 (por exemplo), mas quando chegou na linha 5 tinha um outro lá embaixo dele
+        # e na linha 9 tinha um sol embaixo dos dois (na mesma coluna) ou seja isso era um acorde
+        #temos que arrumar isso
         
         
     def chromagram(self):
