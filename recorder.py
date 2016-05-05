@@ -27,7 +27,7 @@ class Record:
     
     frames = []
     
-    while (enquanto o evento de clique no botão de stop nao ocorrer)
+    while GUI.QtGui.QPushButton:
         data = stream.read(CHUNK)
         frames.append(data)
         
