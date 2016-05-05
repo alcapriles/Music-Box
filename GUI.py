@@ -2,7 +2,7 @@ import sys
 from PyQt4 import QtGui, QtCore
 
 
-class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da programação.
+class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da programação.
     
     def __init__(self):
         super(Example, self).__init__()
@@ -194,8 +194,8 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
 def main():
     
     app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
-    ex = Example()
-    ex.show()
+    ex = GUI()
+    GUI.show()
     sys.exit(app.exec_()) #Para de rodar a aplicação quando a janela é fechada.
 
 
