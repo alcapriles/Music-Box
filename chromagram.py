@@ -61,7 +61,7 @@ class Chromagram:
         tunechroma2=[int(np.log2(A5*st**i)) for i in range(nbin)]
         chroma=np.asarray(tunechroma1)-np.asarray(tunechroma2);
         
-        spf = wave.open('background.wav','r')
+        spf = wave.open('output.wav','r')
         
         signal = spf.readframes(-1)
         signal = np.fromstring(signal, 'Int16')
