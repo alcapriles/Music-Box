@@ -1,0 +1,7 @@
+%% Translation of GIT committish: 5db593aa3737cf8c60f9c4c4fcbe317c2d832766
+  texidocit = "
+Alcuni compositori scrivono due legature di portamento per indicare gli
+accordi legati.  Si può ottenere questo risultato impostando @code{doubleSlurs}.
+
+"
+  doctitleit = "Uso delle doppie legature di portamento per gli accordi legati"

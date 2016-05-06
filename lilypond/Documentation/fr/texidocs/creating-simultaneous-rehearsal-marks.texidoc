@@ -1,0 +1,13 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+Les indications de repère, à la différence des scripts textuels, ne
+peuvent s'empiler en un même endroit de la partition : il n'est
+possible de créer qu'un seul objet @code{RehearsalMark} à la fois.  Le
+recours à une mesure invisible et à une barre de mesure permet cependant
+d'ajouter une autre indication de repère, donnant ainsi l'impression
+d'un double repère sur la même colonne.  Cette méthode permet aussi
+de positionner un repère en fin de ligne et un autre au début de la
+ligne suivante.  
+
+"
+  doctitlefr = "Création de repères simultanés"

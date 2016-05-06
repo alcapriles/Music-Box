@@ -1,0 +1,7 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+La fonction @code{print} peut se modifier pour obtenir l'encadrement de
+n'importe quel objet.
+
+"
+  doctitlefr = "Encadrement d'objets"

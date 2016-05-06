@@ -1,0 +1,8 @@
+%% Translation of GIT committish: 4d1502a7f3c7929e30da8f35a1d177b19eb34f89
+  texidocfr = "
+Le contexte @code{NoteNames} permet d'imprimer le nom des notes.  La
+propriété @code{printOctaveNames}, une fois activée, leur adjoindra une
+indication d'octave.
+
+"
+  doctitlefr = "Impression des noms de notes avec ou sans indication d'octave"

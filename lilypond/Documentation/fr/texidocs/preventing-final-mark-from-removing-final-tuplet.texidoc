@@ -1,0 +1,8 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+L'ajout d'une marque-repère en fin de pièce peut entraîner la perte de
+la dernière indication de nolet.  La désactivation de
+@code{TupletBracket.full-length-to-extent} pallie ce problème.
+
+"
+  doctitlefr = "Préservation de l'indication de nolet lors d'un repère final"

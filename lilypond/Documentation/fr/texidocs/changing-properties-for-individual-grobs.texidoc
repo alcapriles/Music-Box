@@ -1,0 +1,7 @@
+%% Translation of GIT committish: 4d1502a7f3c7929e30da8f35a1d177b19eb34f89
+  texidocfr = "
+La commande @code{\\applyOutput} permet de personnaliser n'importe quel
+objet de rendu.  Elle requiert une fonction Scheme à trois arguments.
+
+"
+  doctitlefr = "Modification des propriétés d'objets particuliers"

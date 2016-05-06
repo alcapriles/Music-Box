@@ -1,0 +1,12 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+Un crochet d'arpège peut indiquer que des notes réparties sur deux
+portées différentes doivent être jouées par la même main.  Le contexte
+@code{PianoStaff} doit accepter ces arpèges « distribués », et les
+indications d'arpège du contexte @code{PianoStaff} adopter une allure de
+crochet.
+
+(Debussy, Les collines d’Anacapri, mesure 65)
+
+"
+  doctitlefr = "Indication d'un accord à cheval sur deux portées par un crochet d'arpège"

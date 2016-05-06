@@ -1,0 +1,9 @@
+%% Translation of GIT committish: 4d1502a7f3c7929e30da8f35a1d177b19eb34f89
+  texidocfr = "
+Dans certains cas de musique polyphonique complexe, une voix
+supplémentaire peut permettre d'éviter les risques de collision.
+Lorsque quatre voix parallèles ne suffisent pas, la fonction Scheme
+@code{context-spec-music} permet d'ajouter encore d'autres voix.
+
+"
+  doctitlefr = "Ajout de voix pour éviter les collisions"

@@ -1,0 +1,8 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+Une surcharge de la propriété @code{text} de l'objet
+@code{BreathingSign} permet de créer une marque de césure.  LilyPond
+dispose également d'une variante courbée.
+
+"
+  doctitlefr = "Insertion d'une césure"

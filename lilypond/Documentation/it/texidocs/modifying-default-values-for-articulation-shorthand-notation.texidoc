@@ -1,0 +1,12 @@
+%% Translation of GIT committish: 5db593aa3737cf8c60f9c4c4fcbe317c2d832766
+  texidocit = "
+Le abbreviazioni sono definite in @samp{ly/script-init.ly}, dove sono
+assegnati valori predefiniti alle variabili @code{dashHat}, @code{dashPlus},
+@code{dashDash}, @code{dashBang}, @code{dashLarger}, @code{dashDot} e
+@code{dashUnderscore}.  Questi valori predefiniti possono essere
+modificati. Ad esempio, per associare l'abbreviazione @code{-+} (@code{dashPlus})
+al simbolo del trillo invece che al simbolo + predefinito, si assegna il
+valore @code{trill} alla variabile @code{dashPlus}:
+
+"
+  doctitleit = "Modificare i valori predefiniti per le abbreviazioni delle articolazioni"

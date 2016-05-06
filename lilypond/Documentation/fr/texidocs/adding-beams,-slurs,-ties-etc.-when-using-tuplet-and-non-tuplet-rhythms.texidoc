@@ -1,0 +1,13 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+La syntaxe de LilyPond demande parfois un positionnement inhabituel des
+parenthèses, crochets, etc. qui peuvent s'entrelacer.  Par exemple, le
+crochet ouvrant une ligature manuelle se place à la suite de la note
+de départ et sa durée, non pas avant.  De même, le crochet fermant se
+place à la fin de la ligature, y compris lorsque la dernière note se
+trouve incluse dans un nolet.  Cet extrait illustre la manière de
+combiner ligatures manuelles, liaisons d'articulation, de prolongation
+ou de phrasé, avec des nolets bornés par des accolades.
+
+"
+  doctitlefr = "Coexistence de ligatures et liaisons avec des rythmes comprenant des nolets"

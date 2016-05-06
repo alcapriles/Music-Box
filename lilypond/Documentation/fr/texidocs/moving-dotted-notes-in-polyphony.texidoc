@@ -1,0 +1,10 @@
+%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
+  texidocfr = "
+Une note pointée appartenant à la voix supérieure d'une portée
+polyphonique sera par défaut décalée vers la droite afin d'éviter les
+collisions avec les autres voix.  Ce comportement peut être outrepassé à
+l'aide de la propriété @code{prefer-dotted-right} de
+@code{NoteCollision}.
+
+"
+  doctitlefr = "Déplacement des notes pointées dans une polyphonie"

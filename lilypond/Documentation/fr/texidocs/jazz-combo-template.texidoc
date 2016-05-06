@@ -1,0 +1,10 @@
+%% Translation of GIT committish: d46572826e777ed3e9fa4656535a6e9000f2ed9e
+  texidocfr = "
+Bien que compliqué de prime abord, voici un canevas tout à fait indiqué
+pour les ensembles de jazz.  Vous noterez que tous les instruments sont
+notés en ut (@code{\key c \major}), la tonalité de concert.  Les notes
+seront automatiquement transposée dès lors qu'elles seront inscrites
+dans une section @code{\\transpose}.
+
+"
+  doctitlefr = "Symboles de jazz"
