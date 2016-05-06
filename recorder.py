@@ -1,6 +1,5 @@
 import pyaudio
 import wave
-from GUI import GUI
 
 class Record:
     
@@ -27,7 +26,7 @@ class Record:
     
     frames = []
     
-    while GUI.QtGui.QPushButton:
+    def record(self):
         data = stream.read(CHUNK)
         frames.append(data)
         
