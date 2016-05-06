@@ -8,23 +8,10 @@ class Record:
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 2
         self.RATE = 44100
-
-    #pedir ao usuário para dar um nome para o arquivo de áudio na interface
-    WAVE_OUTPUT_FILENAME = "output.wav"
-    # obs.:depois que a partitura for gerada, o arquivo de áudio deve ser apagado
-    
-    p = pyaudio.PyAudio()
-    
-    stream = p.open(format=FORMAT,
-    channels=CHANNELS,
-    rate=RATE,
-    input=True,
-    frames_per_buffer=CHUNK)
-    
-    #colocar na interface gráfica: recording
-    print("* recording")
-    
-    frames = []
+        self.WAVE_OUTPUT_FILENAME = "output.wav"
+        self.p = pyaudio.PyAudio()
+        self.stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+        self.frames = []
     
     def record(self):
         data = stream.read(CHUNK)
@@ -34,9 +21,10 @@ class Record:
         stream.close()
         p.terminate()
         
-    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(p.get_sample_size(FORMAT))
-    wf.setframerate(RATE)
-    wf.writeframes(b''.join(frames))
-    wf.close()
+    def encerrar(self): 
+        wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+        wf.setnchannels(CHANNELS)
+        wf.setsampwidth(p.get_sample_size(FORMAT))
+        wf.setframerate(RATE)
+        wf.writeframes(b''.join(frames))
+        wf.close()
