@@ -21,33 +21,53 @@ class Chromagram:
     def lilypondInput(self, colunas, notas):
         colunas = len(CS[1,:])
         notas = "\\relative c' { "
-        for i in range(12):
-            for j in range(colunas):
-                if CS[i,j] > 0.95:       #considerei que são notas só os pontos com intensidades grandes (>0.95). porém, teremos que
-                    if i == 0:           #consertar isto, pois existem notas com intensidades mais baixas
-                        notas += 'b '
+        for j in range(colunas):
+            a = []
+            b = []    
+            for i in range(12):
+                if CS[i,j] > 0.95:
+                    if i == 0:
+                        a.append('b')
+                        b.append('b')
                     elif i == 1:
-                        notas += 'a-sharp '
+                        a.append('a-sharp')
+                        b.append('a-sharp')
                     elif i == 2:
-                        notas += 'a '
+                        a.append('a')
+                        b.append('a')
                     elif i == 3:
-                        notas += 'g-sharp '
+                        a.append('g-sharp ')
+                        b.append('g-sharp ')
                     elif i == 4:
-                        notas += 'g '
+                        a.append('g ')
+                        b.append('g ')
                     elif i == 5:
-                        notas += 'f-sharp '
+                        a.append('f-sharp ')
+                        b.append('f-sharp ')
                     elif i == 6:
-                        notas += 'f '
+                        a.append('f ')
+                        b.append('f ')
                     elif i == 7:
-                        notas += 'e '
+                        a.append('e ')
+                        b.append('e ')
                     elif i == 8:
-                        notas += 'd-sharp '
+                        a.append('d-sharp ')
+                        b.append('d-sharp ')
                     elif i == 9:
-                        notas += 'd '
+                        a.append('d ')
+                        b.append('d ')
                     elif i == 10:
-                        notas += 'c-sharp '
+                        a.append('c-sharp ')
+                        b.append('c-sharp ')
                     elif i == 11:
-                        notas.append += 'c '
+                        a.append('c ')
+                        b.append('c ')
+                        if len(a) >= 3:
+                            for u in range (len(a)-1):
+                                notas+= a[u]
+                        else:
+                            for v in range (len(b)-1):
+                                notas+= b[v]
         notas += '}'
         # o for loop olha de linha em linha e vai colocando na string as notas com maior intensidade. isso é um problema, porque
         #ele colocou o "dó" que tava na linha 1 (por exemplo), mas quando chegou na linha 5 tinha um outro lá embaixo dele
@@ -116,3 +136,6 @@ class Chromagram:
         CS[i,:] = MeanMag
         
         CS= CS / CS.max()
+
+
+
