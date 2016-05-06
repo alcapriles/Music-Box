@@ -14,17 +14,18 @@ class Record:
         self.frames = []
     
     def record(self):
-        data = stream.read(CHUNK)
-        frames.append(data)
-        
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
+        if is_recording:
+            data = stream.read(CHUNK)
+            frames.append(data)
+            
+            stream.stop_stream()
+            stream.close()
+            p.terminate()
         
     def encerrar(self): 
         wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-        wf.setnchannels(CHANNELS)
-        wf.setsampwidth(p.get_sample_size(FORMAT))
-        wf.setframerate(RATE)
-        wf.writeframes(b''.join(frames))
+        wf.setnchannels(self.CHANNELS)
+        wf.setsampwidth(p.get_sample_size(self.FORMAT))
+        wf.setframerate(self.RATE)
+        wf.writeframes(b''.join(self.frames))
         wf.close()
