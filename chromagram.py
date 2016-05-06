@@ -17,7 +17,7 @@ class Chromagram:
         self.fr=11025
         self.df=4
     
-    #este método encontra as notas no cromagrama e coloca elas na string que será o input do lilypond
+    #este método encontra que notas e acordes tem no cromagrama e coloca elas na string que será o input do lilypond
     def lilypondInput(self, colunas, notas):
         colunas = len(CS[1,:])
         notas = "\\relative c' { "
@@ -62,13 +62,25 @@ class Chromagram:
                     elif i == 11:
                         a.append('c ')
                         b.append('c ')
-                        if len(a) >= 3:
-                            for u in range (len(a)-1):
-                                notas+= a[u]
-                        else:
-                            for v in range (len(b)-1):
-                                notas+= b[v]
+                if len(a) >= 3:
+                    for u in range (len(a)-1):
+                        if len(a) = 3:
+                            notas += '<<{} {} {}>>'.format(a[0], a[1], a[2])
+                        if len(a) = 4:
+                            notas+= '<<{} {} {} {}>>'.format(a[0], a[1], a[2], a[3])
+                        if len(a) = 5:
+                            notas+= '<<{} {} {} {} {}>>'.format(a[0], a[1], a[2], a[3], a[4])
+                        if len(a) = 6:
+                            notas+= '<<{} {} {} {} {} {}>>'.format(a[0], a[1], a[2], a[3], a[4], a[5])
+                                    
+                                    
+                    else:
+                        for v in range (len(b)-1):
+                            notas+= b[v]
         notas += '}'
+        #O programa varre primeiro as colunas da matriz, e para cada linha da coluna selecionada observa-se se possui notas relevantes.
+        #A partir disso, verifica-se a presença de acordes, e os adiciona, ou não, na string.
+        
         
     def chromagram(self):
         
