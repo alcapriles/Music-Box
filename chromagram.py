@@ -23,60 +23,60 @@ class Chromagram:
         notas = "\\relative c' { "
         for j in range(colunas):
             a = []
-            b = []    
+              
             for i in range(12):
                 if CS[i,j] > 0.95:
                     if i == 0:
                         a.append('b')
-                        b.append('b')
+                        
                     elif i == 1:
                         a.append('a-sharp')
-                        b.append('a-sharp')
+                        
                     elif i == 2:
                         a.append('a')
-                        b.append('a')
+                        
                     elif i == 3:
                         a.append('g-sharp ')
-                        b.append('g-sharp ')
+                        
                     elif i == 4:
                         a.append('g ')
-                        b.append('g ')
+                        
                     elif i == 5:
                         a.append('f-sharp ')
-                        b.append('f-sharp ')
+                        
                     elif i == 6:
                         a.append('f ')
-                        b.append('f ')
+                        
                     elif i == 7:
                         a.append('e ')
-                        b.append('e ')
+                        
                     elif i == 8:
                         a.append('d-sharp ')
-                        b.append('d-sharp ')
+                        
                     elif i == 9:
                         a.append('d ')
-                        b.append('d ')
+                        
                     elif i == 10:
                         a.append('c-sharp ')
-                        b.append('c-sharp ')
+                        
                     elif i == 11:
                         a.append('c ')
-                        b.append('c ')
+                        
                 if len(a) >= 3:
                     for u in range (len(a)-1):
-                        if len(a) = 3:
+                        if len(a) == 3:
                             notas += '<<{} {} {}>>'.format(a[0], a[1], a[2])
-                        if len(a) = 4:
+                        if len(a) == 4:
                             notas+= '<<{} {} {} {}>>'.format(a[0], a[1], a[2], a[3])
-                        if len(a) = 5:
+                        if len(a) == 5:
                             notas+= '<<{} {} {} {} {}>>'.format(a[0], a[1], a[2], a[3], a[4])
-                        if len(a) = 6:
+                        if len(a) == 6:
                             notas+= '<<{} {} {} {} {} {}>>'.format(a[0], a[1], a[2], a[3], a[4], a[5])
                                     
                                     
                     else:
                         for v in range (len(b)-1):
-                            notas+= b[v]
+                            notas+= a[v]
         notas += '}'
         #O programa varre primeiro as colunas da matriz, e para cada linha da coluna selecionada observa-se se possui notas relevantes.
         #A partir disso, verifica-se a presença de acordes, e os adiciona, ou não, na string.
@@ -143,6 +143,4 @@ class Chromagram:
         CS[i,:] = MeanMag
         
         CS= CS / CS.max()
-
-
 
