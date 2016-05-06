@@ -194,13 +194,13 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
         brush.setStyle(QtCore.Qt.Dense1Pattern) #Das Gravaões Recentes
         qp.setBrush(brush)
         qp.drawRect(25, 275, 325, 150)
-        
-def main():
-    app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
-    ex = GUI()
-    GUI.show()
-    sys.exit(app.exec_()) #Para de rodar a aplicação quando a janela é fechada.
-
-
-if __name__ == '__main__':
-    main() 
+            
+    def main():
+        app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
+        ex = GUI()
+        GUI.show()
+        sys.exit(app.exec_()) #Para de rodar a aplicação quando a janela é fechada.
+    
+    
+    if __name__ == '__main__':
+        main() 
