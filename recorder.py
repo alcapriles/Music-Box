@@ -12,9 +12,10 @@ class Record:
         self.p = pyaudio.PyAudio()
         self.stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
         self.frames = []
+        self.RECORD_SECONDS = 5
     
     def record(self):
-        while is_recording:
+        for i in range(0, int(self.RATE / self.CHUNK * self.RECORD_SECONDS)):
             data = stream.read(CHUNK)
             frames.append(data)
         
