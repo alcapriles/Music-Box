@@ -1,5 +1,6 @@
 import sys
 from PyQt4 import QtGui, QtCore
+from recorder import Record
 
 
 class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da programação.
@@ -20,14 +21,15 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
 #       self.setWindowIcon(QtGui.QIcon('arquivo.png'))        Essa linha serve para quando tivermos um ícone pronto para o app.     
      
 #        self.paint_gravar()
-        gravar = QtGui.QPushButton('Gravar', self)
-        gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
-#        gravar.resize(100,40)
-        gravar.adjustSize() 
-        gravar.move(150, 200)   
-        self.show()
-
-        gravar.clicked.connect(self.gravar_clicked)          
+        def gravar(self):
+            gravar = QtGui.QPushButton('Gravar', self)
+            gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
+#       gravar.resize
+            self.recorder.record()
+            gravar.adjustSize() 
+            gravar.move(150, 200)   
+            self.show()
+            gravar.clicked.connect(self.gravar_clicked)          
         
         salvar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Salvar', self)
         salvar.setStatusTip('Salvar o arquivo')
