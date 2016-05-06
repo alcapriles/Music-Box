@@ -1,17 +1,23 @@
 import sys
 from PyQt4 import QtGui, QtCore
-from recorder import Record
 
 
-class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da programação.
+class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da programação.
     
     def __init__(self):
         super(Example, self).__init__()
         
-        self.initUI(self)
+        self.initUI(self) 
         
         
-    def initUI(self, QMainWindow):        
+    def initUI(self, QMainWindow):  
+
+        QtGui.QMainWindow     
+        QtCore.Qt.BackgroundColorRole
+#        palette = QtGui.QPalette()
+#        palette.setColor(QtGui.QPalette.Background,QtCore.Qt.)
+#        QMainWindow.setPalette(palette)        
+        
 #        self.setGeometry(250, 100, 800, 450) # Primeiros dois argumentos: posição da janela; depois os outros dois são o tamanho
         
         self.resize(800,450)       
@@ -21,38 +27,43 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
 #       self.setWindowIcon(QtGui.QIcon('arquivo.png'))        Essa linha serve para quando tivermos um ícone pronto para o app.     
      
 #        self.paint_gravar()
-    def gravar(self):
         gravar = QtGui.QPushButton('Gravar', self)
+        gravar.setFont(QtGui.QFont('SansSerif', 14))
         gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
-#       gravar.resize
+        
+#        hbox = QtGui.QHBoxLayout(self)
+#        play = QtGui.QPixmap("Icone_play.png")
+#        label = QtGui.QLabel(self)
+#        label.setPixmap(play)
+#        hbox.addWidget(label)
+#        self.setLayout(hbox)
         gravar.adjustSize() 
         gravar.move(150, 200)   
         self.show()
-        gravar.clicked.connect(self.recorder.record)          
+
+        gravar.clicked.connect(self.gravar_clicked)         
         
-    def salvar(self):
         salvar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Salvar', self)
         salvar.setStatusTip('Salvar o arquivo')
         salvar.setShortcut('Ctrl+S')
 #        salvar.triggered.connect(Ação)
 #        salvar.clicked.connect(self.confirm_action) 
-    
-    def imprimir(self):
+        
         imprimir= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Imprimir', self)
         imprimir.setStatusTip('Imprimir o arquivo')
         imprimir.setShortcut('Ctrl+P')
 #        imprimir.triggered.connect(Ação)
-    def compartilhar(self):
+    
         compartilhar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Compartilhar', self)
         compartilhar.setStatusTip('Compartilhar o arquivo')
         compartilhar.setShortcut('Ctrl+F')
 #        compartilhar.triggered.connect(Ação)        
-    def enviar(self):
+        
         enviar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Enviar', self)
         enviar.setStatusTip('Enviar o arquivo')
         enviar.setShortcut('Ctrl+E')
 #        enviar.triggered.connect(Ação)        
-    def menu(self):
+
         menubar = self.menuBar() # Aqui criei um menu com as opções de o que fazer com o arquvo gravado.
         fileMenu = menubar.addMenu('&Opções')
         fileMenu.addAction(salvar) #Adiciona a opção salvar dentro do menu "Opções"
@@ -80,8 +91,8 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
         self.label.adjustSize() 
         self.label.move(135, 250)
         self.label.show()
-        
     def center(self):
+        
         qr = self.frameGeometry()
         cp = QtGui.QDesktopWidget().availableGeometry().center() #Isso dá informações sobre o Desktop do usuário, como a resolução da tela.
         qr.moveCenter(cp)
@@ -115,6 +126,10 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
     def gravar_clicked(self):
         sender = self.sender()
         self.statusBar().showMessage(sender.text() + ' foi pressionado') #Exemplo até agora
+#        if ():
+#        Trocar icone para Pause
+#        else:
+#        Trocar icone para play
         
     def loading(self): # Enquanto estiver carregando vai mostrar uma barra de progresso na tela.
         self.pbar = QtGui.QProgressBar(self)
@@ -194,13 +209,13 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
         brush.setStyle(QtCore.Qt.Dense1Pattern) #Das Gravaões Recentes
         qp.setBrush(brush)
         qp.drawRect(25, 275, 325, 150)
-            
-    def main():
-        app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
-        ex = GUI()
-        GUI.show()
-        sys.exit(app.exec_()) #Para de rodar a aplicação quando a janela é fechada.
+def main():
     
-    
-    if __name__ == '__main__':
-        main() 
+    app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
+    ex = Example()
+    ex.show()
+    sys.exit(app.exec_()) #Para de rodar a aplicação quando a janela é fechada.
+
+
+if __name__ == '__main__':
+    main() 
