@@ -21,37 +21,39 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
 #       self.setWindowIcon(QtGui.QIcon('arquivo.png'))        Essa linha serve para quando tivermos um ícone pronto para o app.     
      
 #        self.paint_gravar()
-        def gravar(self):
-            gravar = QtGui.QPushButton('Gravar', self)
-            gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
+    def gravar(self):
+        gravar = QtGui.QPushButton('Gravar', self)
+        gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
 #       gravar.resize
-            self.recorder.record()
-            gravar.adjustSize() 
-            gravar.move(150, 200)   
-            self.show()
-            gravar.clicked.connect(self.gravar_clicked)          
+        self.recorder.record()
+        gravar.adjustSize() 
+        gravar.move(150, 200)   
+        self.show()
+        gravar.clicked.connect(self.gravar_clicked)          
         
+    def salvar(self):
         salvar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Salvar', self)
         salvar.setStatusTip('Salvar o arquivo')
         salvar.setShortcut('Ctrl+S')
 #        salvar.triggered.connect(Ação)
 #        salvar.clicked.connect(self.confirm_action) 
-        
+    
+    def imprimir(self):
         imprimir= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Imprimir', self)
         imprimir.setStatusTip('Imprimir o arquivo')
         imprimir.setShortcut('Ctrl+P')
 #        imprimir.triggered.connect(Ação)
-    
+    def compartilhar(self):
         compartilhar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Compartilhar', self)
         compartilhar.setStatusTip('Compartilhar o arquivo')
         compartilhar.setShortcut('Ctrl+F')
 #        compartilhar.triggered.connect(Ação)        
-        
+    def enviar(self):
         enviar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Enviar', self)
         enviar.setStatusTip('Enviar o arquivo')
         enviar.setShortcut('Ctrl+E')
 #        enviar.triggered.connect(Ação)        
-
+    def menu(self):
         menubar = self.menuBar() # Aqui criei um menu com as opções de o que fazer com o arquvo gravado.
         fileMenu = menubar.addMenu('&Opções')
         fileMenu.addAction(salvar) #Adiciona a opção salvar dentro do menu "Opções"
@@ -79,8 +81,8 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
         self.label.adjustSize() 
         self.label.move(135, 250)
         self.label.show()
-    def center(self):
         
+    def center(self):
         qr = self.frameGeometry()
         cp = QtGui.QDesktopWidget().availableGeometry().center() #Isso dá informações sobre o Desktop do usuário, como a resolução da tela.
         qr.moveCenter(cp)
@@ -193,8 +195,8 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
         brush.setStyle(QtCore.Qt.Dense1Pattern) #Das Gravaões Recentes
         qp.setBrush(brush)
         qp.drawRect(25, 275, 325, 150)
+        
 def main():
-    
     app = QtGui.QApplication(sys.argv) # Esse " sys.argv" corresponde aos argumentos que podemos usar
     ex = GUI()
     GUI.show()
