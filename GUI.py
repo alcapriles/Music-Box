@@ -25,11 +25,10 @@ class GUI(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restante da
         gravar = QtGui.QPushButton('Gravar', self)
         gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
 #       gravar.resize
-        self.recorder.record()
         gravar.adjustSize() 
         gravar.move(150, 200)   
         self.show()
-        gravar.clicked.connect(self.gravar_clicked)          
+        gravar.clicked.connect(self.recorder.record)          
         
     def salvar(self):
         salvar= QtGui.QAction(QtGui.QIcon('arquivo.png'), '&Salvar', self)
