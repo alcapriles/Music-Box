@@ -132,7 +132,7 @@ plt.imshow(CS.astype('float64'),interpolation='nearest',origin='lower',aspect='a
 plt.show()
 
 colunas = len(CS[1,:])
-notas = "\\relative c' { "
+notas = """\\relative c' { """
 for j in range(colunas):
     for i in range(12):
         if CS[i,j] > 0.98:
@@ -172,6 +172,11 @@ for j in range(colunas):
             elif i == 11:
                 notas += 'c '
 
-notas += '}'
+notas += """}"""
+
+arquivo = open(teste.ly, 'w')
+arquivo.writelines(notas)
+arquivo.close()
+
 
 print(notas)
