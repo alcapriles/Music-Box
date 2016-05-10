@@ -132,7 +132,7 @@ plt.imshow(CS.astype('float64'),interpolation='nearest',origin='lower',aspect='a
 plt.show()
 
 colunas = len(CS[1,:])
-notas = """\\relative c' { """
+notas = """\\relative c' {\n"""
 for j in range(colunas):
     for i in range(12):
         if CS[i,j] > 0.98:
@@ -140,19 +140,19 @@ for j in range(colunas):
                 notas += 'b '
                 
             elif i == 1:
-                notas += 'a-sharp '
+                notas += 'ais '
                 
             elif i == 2:
                 notas += 'a '
                 
             elif i == 3:
-                notas += 'g-sharp '
+                notas += 'gis '
                 
             elif i == 4:
                 notas += 'g '
                 
             elif i == 5:
-                notas += 'f-sharp '
+                notas += 'fis '
                 
             elif i == 6:
                 notas += 'f '
@@ -161,20 +161,20 @@ for j in range(colunas):
                 notas += 'e '
                 
             elif i == 8:
-                notas += 'd-sharp '
+                notas += 'dis '
                 
             elif i == 9:
                 notas += 'd '
                 
             elif i == 10:
-                notas += 'c-sharp '
+                notas += 'cis '
                 
             elif i == 11:
                 notas += 'c '
 
-notas += """}"""
+notas += """\n}"""
 
-arquivo = open(teste.ly, 'w')
+arquivo = open('teste.ly', 'w')
 arquivo.writelines(notas)
 arquivo.close()
 
