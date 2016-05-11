@@ -33,7 +33,7 @@ tunechroma2=[int(np.log2(A5*st**i)) for i in range(nbin)]
 chroma=np.asarray(tunechroma1)-np.asarray(tunechroma2);
 
 
-spf = wave.open('background.wav','r')
+spf = wave.open('Yamaha-TG100-Voice-Ld-C5.wav','r')
 
 #Extract Raw Audio from Wav File
 signal = spf.readframes(-1)

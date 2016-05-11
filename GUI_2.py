@@ -1,6 +1,6 @@
 from tkinter import Tk, Frame, Checkbutton
 from tkinter import BooleanVar, BOTH
-
+import tkinter as tk
 
 class Example(Frame):
   
@@ -13,6 +13,12 @@ class Example(Frame):
         
         
     def initUI(self):
+        self.window = tk.Tk()
+        self.window.title("Jogo da Velha!")
+        self.window.geometry("600x400")
+        self.window.rowconfigure(0, minsize=100,weight=1)
+        self.window.columnconfigure(0, minsize=100,weight=1)
+        self.window.columnconfigure(1, minsize=100,weight=1)
       
         self.parent.title("Checkbutton")
 

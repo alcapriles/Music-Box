@@ -11,12 +11,12 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         
         
     def initUI(self, QMainWindow):  
-
-        QtGui.QMainWindow     
-        QtCore.Qt.BackgroundColorRole
+#
+#        QtGui.QMainWindow     
+#        QtCore.Qt.BackgroundColorRole
 #        palette = QtGui.QPalette()
 #        palette.setColor(QtGui.QPalette.Background,QtCore.Qt.)
-#        QMainWindow.setPalette(palette)        
+#        QMainWindow.setPalette(palette)    
         
 #        self.setGeometry(250, 100, 800, 450) # Primeiros dois argumentos: posição da janela; depois os outros dois são o tamanho
         
@@ -31,12 +31,13 @@ class Example(QtGui.QMainWindow): #Coloca QMainWIndow ou QWidget afeta o restant
         gravar.setFont(QtGui.QFont('SansSerif', 14))
         gravar.setToolTip('Aperte <b>Gravar</b> para começar a gravação') # Ao passar o mouse por cima do botão, aparece um texto de explicação.
         
-#        hbox = QtGui.QHBoxLayout(self)
-#        play = QtGui.QPixmap("Icone_play.png")
-#        label = QtGui.QLabel(self)
-#        label.setPixmap(play)
-#        hbox.addWidget(label)
-#        self.setLayout(hbox)
+        hbox = QtGui.QHBoxLayout(self)
+        play = QtGui.QPixmap("Icone_play.png")
+        label = QtGui.QLabel(self)
+        label.setPixmap(play)
+        label.pixmap.__init__
+
+        
         gravar.adjustSize() 
         gravar.move(150, 200)   
         self.show()
