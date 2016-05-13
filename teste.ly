@@ -1,3 +1,0 @@
-\relative c' {
-gis gis 
-}

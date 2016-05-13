@@ -7,9 +7,10 @@ Created on Mon May  9 19:18:06 2016
 
 import os
 
-os.startfile('teste.ly')
+def abrir_partitura():
+    os.startfile('teste.ly')
 
-while True:
-    if os.path.isfile('teste.pdf'):
-        os.startfile('teste.pdf')
-        break
+    while True:
+        if os.path.isfile('teste.pdf'):
+            os.startfile('teste.pdf')
+            break

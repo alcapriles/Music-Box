@@ -14,7 +14,7 @@ class Example(Frame):
         
     def initUI(self):
         self.window = tk.Tk()
-        self.window.title("Jogo da Velha!")
+        self.window.title("MusicBox")
         self.window.geometry("600x400")
         self.window.rowconfigure(0, minsize=100,weight=1)
         self.window.columnconfigure(0, minsize=100,weight=1)
