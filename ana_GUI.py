@@ -31,10 +31,10 @@ class App:
         botao2.configure(command=self.botao_chromagram_clicado)
         botao2.grid(row=1, column=0)
         
-        botao = tk.Button(self.window)
-        botao.configure(text='Gravar')
-        botao.configure(command=recorder.record)
-        botao.grid(row=2, column=0)
+        botao3 = tk.Button(self.window)
+        botao3.configure(text='Gravar')
+        botao3.configure(command=recorder.record)
+        botao3.grid(row=2, column=0)
 
     def botao_chromagram_clicado(self):
         CS = chromagram.compute_chromagram()
