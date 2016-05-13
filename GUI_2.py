@@ -2,6 +2,7 @@ import tkinter as tk
 import os
 import subprocess
 import lilypond_generator
+import chromagram
 
 class Example:
     def __init__(self):
@@ -50,11 +51,17 @@ class Example:
         elif (self.button_status == 'play'):
             self.button_gravar = tk.Button(self.window, image = self.pause)
             self.button_status = 'pause'
-            subprocess.call([r'C:\Users\Victor\Desktop\Projeto_DesSoft\Music-Box', 'chromagram.py'])
-            self.label_arquivo.configure(text = self.arquivo)
+            self.gerar_cromagrama()
+            self.nome_arquivo()
             print('2')
             
-            
+    def gerar_cromagrama(self): 
+        
+    def nome_arquivo(self):
+        self.label_arquivo = tk.Label(self.window)
+        self.label_arquivo.configure(font= 'Courirer 14')
+        self.label_arquivo.configure(text= self.arquivo)
+        self.label_arquivo.grid(row=1, column= 3, sticky= 'nsew')
     
         
 app= Example()
