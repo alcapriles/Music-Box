@@ -5,61 +5,44 @@ import math
 import wave, pylab
 import operator
 
-def chromagram():
-    #FFT Size
+def compute_chromagram():
     Nfft=2048
-    #Chroma centered on A5 = 880Hz 
     A5=880
-    #Number of chroma bins
     nbin=12
-    #Semitone
     st=2**(1/float(nbin))
-    #Step
     step=128
-    #Used for Downsample Signal
     fr=11025
-    #DownSample Factor
     df=4
+    
     
     tunechroma1=[np.log2(A5*st**i) for i in range(nbin)] 
     tunechroma2=[int(np.log2(A5*st**i)) for i in range(nbin)]
-    
+
+
     chroma=np.asarray(tunechroma1)-np.asarray(tunechroma2);
     
-    spf = wave.open('background.wav','r')
-    
+    spf = wave.open('output.wav','r')
+
+
     #Extract Raw Audio from Wav File
     signal = spf.readframes(-1)
     signal = np.fromstring(signal, 'Int16')
     fs = spf.getframerate()
-    
-    #plt.figure(1)
-    #plt.title('Signal Wave...')
-    #plt.plot(signal)
-    
     #Normalize
     #signal = signal/signal.max();
-    
     #signal=signal2.resample(signal,int(round(len(signal)*fr)/float(fs)),window=None)
-    
     #downsample with low-pass filtering
     #signal=signal2.resample(signal, len(signal)/df)
-    
     #Starting DownSample signal using Decimation
     b = signal2.firwin(30, 1.0/df)
     signal = signal2.lfilter(b, 1., signal)
     signal = signal.swapaxes(0,-1)[30+1::4].swapaxes(0,-1)
     
-    #plt.figure(2)
-    
-    #plt.title('Downsampled Signal...')
-    #plt.plot(signal)
-    
     fs = fs / df
     
     step=Nfft-step
     
-    Pxx, freqs, bins, im  = pylab.specgram(signal,Fs=fs,window=np.hamming(Nfft),NFFT=Nfft,noverlap=step,Fc=0)
+    Pxx, freqs, bins, im  = pylab.specgram(signal,Fs=fs,window=np.hamming(Nfft),NFFT=Nfft,noverlap=step,Fc=0, cmap=None)
     
     freqs = freqs[1:,]
     
@@ -71,7 +54,7 @@ def chromagram():
     CD=np.zeros((nfreqschroma, nchroma))
     
     for i in range(nchroma):
-    	CD[:,i] = np.abs(freqschroma - chroma[i])
+        CD[:,i] = np.abs(freqschroma - chroma[i])
     
     FlipMatrix=np.flipud(CD)
     
@@ -79,9 +62,9 @@ def chromagram():
     min_value = []
     
     for i in reversed(range(FlipMatrix.shape[0])):
-    	index, value = min(enumerate(FlipMatrix[i]), key=operator.itemgetter(1))
-    	min_index.append(index)
-    	min_value.append(value)
+        index, value = min(enumerate(FlipMatrix[i]), key=operator.itemgetter(1))
+        min_index.append(index)
+        min_value.append(value)
     
     #Numpy Array for Chroma Scale population
     CS = np.zeros((len(chroma),Pxx.shape[1]))
@@ -89,38 +72,25 @@ def chromagram():
     Magnitude= np.log(abs(Pxx[1:,]))
     
     for i in range(CS.shape[0]):
+    	    a = [index for index,x in enumerate(min_index) if x == i]
+    	    AIndex = np.zeros((len(a),Pxx.shape[1]))
     
-    	#Find index value in min_index list
-    	a = [index for index,x in enumerate(min_index) if x == i]
-    	
-    	#Numpy Array for values in each index
-    	AIndex = np.zeros((len(a),Pxx.shape[1]))
+    t=0;
+    for value in a:
+    	    AIndex[t,:] = Magnitude[value,:]
+    	    t=t+1
     
-    	t=0;
-    	for value in a:
-    		AIndex[t,:] = Magnitude[value,:]
-    		t=t+1
+    MeanMag=[]
+    for M in AIndex.T:
+    	    MeanMag.append(np.mean(M))
     
-    	MeanMag=[]
-    	for M in AIndex.T:
-    		MeanMag.append(np.mean(M))
-    
-    	CS[i,:] = MeanMag
+    CS[i,:] = MeanMag
     
     #normalize the chromagram array
-    CS= CS / CS.max()
+    CS= CS / CS.max()     
+    return CS
     
-    
-    #plt.figure(3)
-    #plt.title('Original Magnitude')
-    #plt.imshow(Magnitude.astype('float64'),interpolation='nearest',origin='lower',aspect='auto')
-    
-    #plt.figure(4)
-    #plt.title('Chromagram')
-    #plt.imshow(CS.astype('float64'),interpolation='nearest',origin='lower',aspect='auto')
-    
-    #plt.show()
-    
+def find_notes(CS):    
     colunas = len(CS[1,:])
     notas = """\\relative c' {\n"""
     for j in range(colunas):
@@ -163,10 +133,9 @@ def chromagram():
                     notas += 'c '
     
     notas += """\n}"""
-    
+    return notas
+
+def save_lilypond(notas):
     arquivo = open('teste.ly', 'w')
     arquivo.writelines(notas)
     arquivo.close()
-    
-    
-    print(notas)
