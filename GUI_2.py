@@ -11,13 +11,11 @@ class Example:
         self.button_status = 'pause'        
         
         self.window = tk.Tk()
-        self.window.title('Music Box')
-        self.window.geometry('800x300')
         
-        self.window.rowconfigure(0, minsize=170,weight=1)
-        self.window.rowconfigure(1, minsize=70, weight=1)
-        self.window.rowconfigure(2, minsize=70, weight=1)
-        self.window.columnconfigure(0, minsize=50,weight=1)
+        self.window.title("MusicBox")
+        self.window.geometry("600x400")
+        self.window.rowconfigure(0, minsize=100,weight=1)
+        self.window.columnconfigure(0, minsize=100,weight=1)
         self.window.columnconfigure(1, minsize=100,weight=1)
         self.window.columnconfigure(2, minsize=200,weight=1)
         self.window.columnconfigure(3, minsize=450, weight=1)        
