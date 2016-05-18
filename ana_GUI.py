@@ -5,6 +5,8 @@ Created on Fri May 13 13:45:50 2016
 @author: Ana Capriles
 """
 
+#Para rodar direito os aplicativos padrão precisam ser: .pdf - Navegador(Google Chrome, etc) .ly - Lilypond
+
 import tkinter as tk
 import chromagram
 import lilypond_generator

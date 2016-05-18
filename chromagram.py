@@ -21,7 +21,7 @@ def compute_chromagram():
 
     chroma=np.asarray(tunechroma1)-np.asarray(tunechroma2);
     
-    spf = wave.open('output.wav','r')
+    spf = wave.open('background.wav','r')
 
 
     #Extract Raw Audio from Wav File
@@ -136,6 +136,9 @@ def find_notes(CS):
     return notas
 
 def save_lilypond(notas):
-    arquivo = open('teste.ly', 'w')
-    arquivo.writelines(notas)
-    arquivo.close()
+#    arquivo = open('teste.ly', 'w')
+#    arquivo.writelines(notas)
+#    arquivo.close()
+    
+    with open('teste.ly', 'w') as f:
+        f.writelines(notas)
