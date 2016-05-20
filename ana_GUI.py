@@ -8,7 +8,7 @@ Created on Fri May 13 13:45:50 2016
 #Para rodar direito os aplicativos padrão precisam ser: .pdf - Navegador(Google Chrome, etc) .ly - Lilypond
 
 import tkinter as tk
-import chromagram
+import chroma
 import lilypond_generator
 import recorder
 
@@ -39,9 +39,10 @@ class App:
         botao3.grid(row=2, column=0)
 
     def botao_chromagram_clicado(self):
-        CS = chromagram.compute_chromagram()
-        notas = chromagram.find_notes(CS)
-        chromagram.save_lilypond(notas)
+        C = chroma.make_chroma()
+        nots = chroma.find_notes2(C)
+        inp = chroma.make_input(nots)
+        chroma.save_lilypond(inp)
 
     def iniciar(self):
         self.window.mainloop()
