@@ -137,6 +137,8 @@ for j in range(colunas):
                 notas += '<<{}>>'.format(a[u])
 notas += '}'
 
-print(a)
+print(CD)
+
+print(Magnitude)
 #O programa varre primeiro as colunas da matriz, e para cada linha da coluna selecionada observa-se se possui notas relevantes.
 #A partir disso, verifica-se a presença de acordes, e os adiciona, ou não, na string.
