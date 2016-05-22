@@ -55,7 +55,8 @@ class App:
         
             C.pack()
             
-            if (self.load <= 359):    
+            if (self.load <= 359):
+                arc = C.create_arc(coord, start=0, extent = self.load, fill="green")
                 self.load+=1
             self.load=1
     
