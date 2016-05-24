@@ -11,10 +11,14 @@ import tkinter as tk
 import chroma
 import lilypond_generator
 import recorder
+import time
 
 class App:
     
     def __init__(self):
+        self.loading = False     
+        self.load = 1
+        
         self.window = tk.Tk()
         self.window.title('Music Box')
         self.window.geometry("600x600")
@@ -37,15 +41,84 @@ class App:
         botao3.configure(text='Gravar')
         botao3.configure(command=recorder.record)
         botao3.grid(row=2, column=0)
-
+        
+        self.tela_loading()
+        
+        
+    def tela_loading(self):
+        while (self.loading == True):
+            self.window_loading = tk.Tk()
+            C = tk.Canvas(self.window_loading, bg="grey", height=250, width=260)
+            
+            coord = 10, 50, 240, 210
+            arc = C.create_arc(coord, start=0, extent = self.load, fill="green")
+        
+            C.pack()
+            
+            if (self.load <= 359):
+                arc = C.create_arc(coord, start=0, extent = self.load, fill="green")
+                self.load+=1
+            self.load=1
+    
+    def tempo_loading(self,x,y):
+        z = 1
+        if (y == 0):
+            z=z+1
+        else:
+            z = x-y
+        time.sleep(z)
+        
     def botao_chromagram_clicado(self):
         C = chroma.make_chroma()
         nots = chroma.find_notes2(C)
         inp = chroma.make_input(nots)
         chroma.save_lilypond(inp)
+        
 
+#    def botao_chromagram_clicado(self):
+#        x=0
+#        y=0
+#        self.loading = True
+#        x = time.perf_counter()
+#        
+#        while (x-y == x):
+#            self.tempo_loading(x,y)
+#            C = chroma.make_chroma()
+#            nots = chroma.find_notes2(C)
+#            inp = chroma.make_input(nots)
+#            chroma.save_lilypond(inp)
+#            y = time.perf_counter()
+#
+#
+#        self.loading = False
+#        self.load=1
+      
     def iniciar(self):
         self.window.mainloop()
 
 musicBox = App()
 musicBox.iniciar()
+
+
+''' 
+
+Código da tela loading funcionando
+
+def tela_loading():
+    top = tkinter.Tk()
+    
+    C = tkinter.Canvas(top, bg="grey", height=250, width=260)
+    
+    coord = 10, 50, 240, 210
+    arc = C.create_arc(coord, start=0, extent=load, fill="green")
+
+    C.pack()
+
+    while (loading == True):
+        if (load <= 359):    
+            load+=1
+        load=1
+        
+tela_loading()
+top.mainloop()
+'''
