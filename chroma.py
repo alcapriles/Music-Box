@@ -5,9 +5,10 @@ import librosa
 import seaborn
 seaborn.set(style='ticks')
 import chroma_wave
+from itertools import groupby
 
 def make_chroma():
-    audio_path = "background.wav"
+    audio_path = "scale.wav"
     C, sr = chroma_wave.wave_to_chromagram(audio_path)
     
     # Make a new figure
@@ -27,39 +28,84 @@ def make_chroma():
     return C
 
 C = make_chroma()
+print(len(C[1,:]))
 
 def find_notes2(C):
     colunas = len(C[1,:])
-    nots = ['z']
-    for j in range(colunas):
-        for i in range(12):
-            if (C[i,j] > 0.9) and (C[i,j] != C[i,j-1]):
+    nots = dict()
+    #notes = ['c ', 'cis ', 'd ','dis ' ,'e ' ,'f ' ,'fis ' ,'g ' ,'gis ' ,'a ' ,'ais ','b ']
+    for i in range(12):
+        for j in range(colunas):
+            if C[i,j] > 0.9:
                 if i == 0:
-                    nots.append('c ')
+                    if j in dict.keys(nots):
+                        nots[j].append('c ')
+                    else:
+                        nots[j] = ['c ']
                 elif i == 1:
-                    nots.append('cis ')
+                    if j in dict.keys(nots):
+                        nots[j].append('cis ')
+                    else:
+                        nots[j] = ['cis ']
                 elif i == 2:
-                    nots.append('d ')
+                    if j in dict.keys(nots):
+                        nots[j].append('d ')
+                    else:
+                        nots[j] = ['d ']
                 elif i == 3:
-                    nots.append('dis ')
+                    if j in dict.keys(nots):
+                        nots[j].append('dis ')
+                    else:
+                        nots[j] = ['dis ']
                 elif i == 4:
-                    nots.append('e ')
+                    if j in dict.keys(nots):
+                        nots[j].append('e ')
+                    else:
+                        nots[j] = ['e ']
                 elif i == 5:
-                    nots.append('f ')
+                    if j in dict.keys(nots):
+                        nots[j].append('f ')
+                    else:
+                        nots[j] = ['f ']
                 elif i == 6:
-                    nots.append('fis ')
+                    if j in dict.keys(nots):
+                        nots[j].append('fis ')
+                    else:
+                        nots[j] = ['fis ']
                 elif i == 7:
-                    nots.append('g ')
+                    if j in dict.keys(nots):
+                        nots[j].append('g ')
+                    else:
+                        nots[j] = ['g ']
                 elif i == 8:
-                    nots.append('gis ')
+                    if j in dict.keys(nots):
+                        nots[j].append('gis ')
+                    else:
+                        nots[j] = ['gis ']
                 elif i == 9:
-                    nots.append('a ')
+                    if j in dict.keys(nots):
+                        nots[j].append('a ')
+                    else:
+                        nots[j] = ['a ']
                 elif i == 10:
-                    nots.append('ais ')
+                    if j in dict.keys(nots):
+                        nots[j].append('ais ')
+                    else:
+                        nots[j] = ['ais ']
                 elif i == 11:
-                    nots.append('b ')
-    nots.remove('z')
+                    if j in dict.keys(nots):
+                        nots[j].append('b ')
+                    else:
+                        nots[j] = ['b ']
     return nots
+
+nots = find_notes2(C)
+print(nots)
+
+
+for k, g in groupby(sorted(nots),
+                    key=nots.get):
+    print('{}: {}'.format(list(g)[-1], k))
 
 def make_input(L):
     notas = """\\relative c' {\n"""
@@ -76,8 +122,6 @@ def save_lilypond(notas):
     with open('teste.ly', 'w') as f:
         f.writelines(notas)
 
-a = find_notes2(C)
-print (a)
 
-b = make_input(a)
-print(b)
+
+
