@@ -71,9 +71,10 @@ class App:
     def botao_chromagram_clicado(self):
         C = chroma.make_chroma()
         nots = chroma.find_notes2(C)
-        inp = chroma.make_input(nots)
-        chroma.save_lilypond(inp)
-        
+        updated_nots = chroma.update_notes(nots)
+        d = chroma.remake_dict(updated_nots)
+        the_end = chroma.make_input(d)
+        chroma.save_lilypond(the_end)
 
 #    def botao_chromagram_clicado(self):
 #        x=0

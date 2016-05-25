@@ -8,7 +8,7 @@ from itertools import groupby
 import json
 
 def make_chroma():
-    audio_path = "scale.wav"
+    audio_path = "background.wav"
     
     C, sr = chroma_wave.wave_to_chromagram(audio_path)
     
@@ -116,27 +116,30 @@ d = remake_dict(updated_nots)
 print('remade dictionary: (in order to get the nots only by accessing the values)')
 print(d)
 
+'''
 the_end = ''
 for key,value in d.items():
     the_end += value[0]
-    
+    '''
+
+def make_input(d):
+    the_end = """\\relative c' {\n"""
+    for key,value in d.items():
+        if (value[0] == 'c ') or (value[0] == 'cis ') or (value[0] == 'd ') or (value[0] == 'dis ') or (value[0] == 'e ') or (value[0] == 'f ') or (value[0] == 'fis ') or (value[0] == 'g ') or (value[0] == 'gis ') or (value[0] == 'a ') or (value[0] == 'ais ') or (value[0] == 'b '):        
+            the_end += value[0]
+        else:
+            the_end += '<' + value[0] + '>'
+    the_end += """\n}"""
+    return the_end
+
+the_end = make_input(d)
 print('the_end:')
 print(the_end)
+print('c cis d dis e f fis g gis a ais b')
 
-def make_input(L):
-    notas = """\\relative c' {\n"""
-    for i in L:
-        notas += i
-    notas += """\n}"""
-    return notas
-
-def save_lilypond(notas):
-#    arquivo = open('teste.ly', 'w')
-#    arquivo.writelines(notas)
-#    arquivo.close()
-    
+def save_lilypond(the_end):
     with open('teste.ly', 'w') as f:
-        f.writelines(notas)
+        f.writelines(the_end)
 
 
 

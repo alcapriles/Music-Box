@@ -1,3 +1,3 @@
 \relative c' {
-dis fis e fis e fis g cis cis g c c c g c g dis e d d cis cis d c c cis ais c ais dis e f dis e e e d d dis cis c cis c cis dis e d dis cis d c c cis cis c cis d c c c c c cis cis dis e d d dis cis cis d c c cis cis dis dis d dis dis cis cis c cis d cis dis d dis cis d c c cis dis e dis e f fis fis g cis c cis c c cis cis g g dis e d d dis cis cis d c c cis c ais dis e f e e d d dis cis c cis dis e d d cis d c c cis c dis c dis cis cis c cis d c c c c c cis cis dis d d dis cis cis d c c cis c cis dis dis d d dis cis cis d c cis e dis e d dis cis cis cis c c cis 
+cis c e dis d 
 }
