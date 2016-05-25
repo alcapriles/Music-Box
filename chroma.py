@@ -116,12 +116,21 @@ d = remake_dict(updated_nots)
 print('remade dictionary: (in order to get the nots only by accessing the values)')
 print(d)
 
-'''
-the_end = ''
-for key,value in d.items():
-    the_end += value[0]
-    '''
+def make_input(d):
+    the_end = """\\relative c' {\n"""
+    for key,value in d.items():
+        if len(value) == 1:        
+            the_end += value[0]
+        elif len(value) > 1:
+            the_end += '<'
+            for i in range(len(value)):
+                the_end += value[i]
+            the_end += '>'
+    the_end += """\n}"""
+    return the_end
 
+
+'''
 def make_input(d):
     the_end = """\\relative c' {\n"""
     for key,value in d.items():
@@ -131,6 +140,7 @@ def make_input(d):
             the_end += '<' + value[0] + '>'
     the_end += """\n}"""
     return the_end
+'''
 
 the_end = make_input(d)
 print('the_end:')
