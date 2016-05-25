@@ -21,11 +21,15 @@ class App:
         
         self.window = tk.Tk()
         self.window.title('Music Box')
-        self.window.geometry("600x600")
+        self.window.geometry("800x800")
         self.window.rowconfigure(0, minsize=200)
         self.window.rowconfigure(1, minsize=200)
         self.window.rowconfigure(2, minsize=200)
-        self.window.columnconfigure(0, minsize=600)
+        self.window.rowconfigure(3, minsize=200)
+        self.window.columnconfigure(0, minsize=200)
+        self.window.columnconfigure(1, minsize=200)
+        self.window.columnconfigure(2, minsize=200)
+        self.window.columnconfigure(3, minsize=200)
         
         botao = tk.Button(self.window)
         botao.configure(text='Mostrar Partitura')
@@ -41,6 +45,11 @@ class App:
         botao3.configure(text='Gravar')
         botao3.configure(command=recorder.record)
         botao3.grid(row=2, column=0)
+        
+        botao3 = tk.Button(self.window)
+        botao3.configure(text='Escolher arquivo do tipo .wav')
+        botao3.configure(command=recorder.record)
+        botao3.grid(row=3, column=0)
         
         self.tela_loading()
         
@@ -102,7 +111,6 @@ musicBox.iniciar()
 
 
 ''' 
-
 Código da tela loading funcionando
 
 def tela_loading():
