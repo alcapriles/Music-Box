@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
 import librosa
@@ -6,34 +5,27 @@ import seaborn
 seaborn.set(style='ticks')
 import chroma_wave
 from itertools import groupby
+import json
 
 def make_chroma():
     audio_path = "scale.wav"
+    
     C, sr = chroma_wave.wave_to_chromagram(audio_path)
     
-    # Make a new figure
     plt.figure(figsize=(12,4))
-    
-    # Display the chromagram: the energy in each chromatic pitch class as a function of time
-    # To make sure that the colors span the full range of chroma values, set vmin and vmax
     librosa.display.specshow(C, sr=sr, x_axis='time', y_axis='chroma', vmin=0, vmax=1)
-    
-    
     plt.title('Chromagram')
     plt.colorbar()
-    
     plt.tight_layout()
-    
     plt.show()
+    
     return C
 
 C = make_chroma()
-print(len(C[1,:]))
 
 def find_notes2(C):
     colunas = len(C[1,:])
     nots = dict()
-    #notes = ['c ', 'cis ', 'd ','dis ' ,'e ' ,'f ' ,'fis ' ,'g ' ,'gis ' ,'a ' ,'ais ','b ']
     for i in range(12):
         for j in range(colunas):
             if C[i,j] > 0.9:
@@ -100,12 +92,36 @@ def find_notes2(C):
     return nots
 
 nots = find_notes2(C)
+print('nots: (this dict contais the pairs: time: pitch)')
 print(nots)
 
+def update_notes(nots):
+    updated_nots = []
+    for k, g in groupby(sorted(nots),
+                        key=nots.get):
+        updated_nots.append('"{}": {}'.format(list(g)[-1], json.dumps(k)))
+    return updated_nots
 
-for k, g in groupby(sorted(nots),
-                    key=nots.get):
-    print('{}: {}'.format(list(g)[-1], k))
+updated_nots = update_notes(nots)
+print('updated_nots: (nots extracted from the giant dictionary)')
+print(updated_nots)
+
+def remake_dict(updated_nots):
+    s = ",".join(updated_nots)
+    s = "{" + s + "}"
+    d = json.loads(s)
+    return d
+
+d = remake_dict(updated_nots)
+print('remade dictionary: (in order to get the nots only by accessing the values)')
+print(d)
+
+the_end = ''
+for key,value in d.items():
+    the_end += value[0]
+    
+print('the_end:')
+print(the_end)
 
 def make_input(L):
     notas = """\\relative c' {\n"""
