@@ -11,13 +11,13 @@ import tkinter as tk
 import chroma
 import lilypond_generator
 import recorder
-import time
+import easygui
 
 class App:
     
     def __init__(self):
-        self.loading = False     
-        self.load = 1
+        self.escolheu_arquivo = False        
+        self.path = ''        
         
         self.window = tk.Tk()
         self.window.title('Music Box')
@@ -25,7 +25,8 @@ class App:
         self.window.rowconfigure(0, minsize=200)
         self.window.rowconfigure(1, minsize=200)
         self.window.rowconfigure(2, minsize=200)
-        self.window.columnconfigure(0, minsize=600)
+        self.window.columnconfigure(0, minsize=300)
+        self.window.columnconfigure(1, minsize=300)
         
         botao = tk.Button(self.window)
         botao.configure(text='Mostrar Partitura')
@@ -42,31 +43,10 @@ class App:
         botao3.configure(command=recorder.record)
         botao3.grid(row=2, column=0)
         
-        self.tela_loading()
-        
-        
-    def tela_loading(self):
-        while (self.loading == True):
-            self.window_loading = tk.Tk()
-            C = tk.Canvas(self.window_loading, bg="grey", height=250, width=260)
-            
-            coord = 10, 50, 240, 210
-            arc = C.create_arc(coord, start=0, extent = self.load, fill="green")
-        
-            C.pack()
-            
-            if (self.load <= 359):
-                arc = C.create_arc(coord, start=0, extent = self.load, fill="green")
-                self.load+=1
-            self.load=1
-    
-    def tempo_loading(self,x,y):
-        z = 1
-        if (y == 0):
-            z=z+1
-        else:
-            z = x-y
-        time.sleep(z)
+        botao3 = tk.Button(self.window)
+        botao3.configure(text='Escolher arquivo')
+        botao3.configure(command = self.escolher_arquivo)
+        botao3.grid(row=2, column=1)
         
     def botao_chromagram_clicado(self):
         C = chroma.make_chroma()
@@ -76,50 +56,14 @@ class App:
         the_end = chroma.make_input(d)
         chroma.save_lilypond(the_end)
 
-#    def botao_chromagram_clicado(self):
-#        x=0
-#        y=0
-#        self.loading = True
-#        x = time.perf_counter()
-#        
-#        while (x-y == x):
-#            self.tempo_loading(x,y)
-#            C = chroma.make_chroma()
-#            nots = chroma.find_notes2(C)
-#            inp = chroma.make_input(nots)
-#            chroma.save_lilypond(inp)
-#            y = time.perf_counter()
-#
-#
-#        self.loading = False
-#        self.load=1
       
+    def escolher_arquivo(self):     
+        self.path = easygui.fileopenbox() 
+        self.escolheu_arquivo = True
+        
     def iniciar(self):
         self.window.mainloop()
 
 musicBox = App()
 musicBox.iniciar()
 
-
-''' 
-
-Código da tela loading funcionando
-
-def tela_loading():
-    top = tkinter.Tk()
-    
-    C = tkinter.Canvas(top, bg="grey", height=250, width=260)
-    
-    coord = 10, 50, 240, 210
-    arc = C.create_arc(coord, start=0, extent=load, fill="green")
-
-    C.pack()
-
-    while (loading == True):
-        if (load <= 359):    
-            load+=1
-        load=1
-        
-tela_loading()
-top.mainloop()
-'''
