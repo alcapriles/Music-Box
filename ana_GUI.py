@@ -21,12 +21,12 @@ class App:
         
         self.window = tk.Tk()
         self.window.title('Music Box')
-        self.window.geometry("600x600")
+        self.window.geometry("400x400")
         self.window.rowconfigure(0, minsize=200)
         self.window.rowconfigure(1, minsize=200)
-        self.window.rowconfigure(2, minsize=200)
-        self.window.columnconfigure(0, minsize=300)
-        self.window.columnconfigure(1, minsize=300)
+        self.window.columnconfigure(0, minsize=200)
+        self.window.columnconfigure(1, minsize=200)
+
         
         botao = tk.Button(self.window)
         botao.configure(text='Mostrar Partitura')
@@ -36,17 +36,17 @@ class App:
         botao2 = tk.Button(self.window)
         botao2.configure(text='Gerar Partitura')
         botao2.configure(command=self.botao_chromagram_clicado)
-        botao2.grid(row=1, column=0)
+        botao2.grid(row=0, column=1)
         
         botao3 = tk.Button(self.window)
         botao3.configure(text='Gravar')
         botao3.configure(command=recorder.record)
-        botao3.grid(row=2, column=0)
+        botao3.grid(row=1, column=0)
         
-        botao3 = tk.Button(self.window)
-        botao3.configure(text='Escolher arquivo')
-        botao3.configure(command = self.escolher_arquivo)
-        botao3.grid(row=2, column=1)
+        botao4 = tk.Button(self.window)
+        botao4.configure(text='Escolher arquivo')
+        botao4.configure(command = self.escolher_arquivo)
+        botao4.grid(row=1, column=1)
         
     def botao_chromagram_clicado(self):
         C = chroma.make_chroma()
