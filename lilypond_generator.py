@@ -4,8 +4,8 @@ def abrir_partitura():
     os.startfile('teste.ly', '--png')
 
     while True:
-        if os.path.isfile('teste.pdf'):
-            os.startfile('teste.pdf')
+        if os.path.isfile('teste.png'):
+            os.startfile('teste.png')
             break
         
     '''

@@ -1,6 +1,7 @@
 import tkinter as tk
 import chroma
-import lilypond_generator
+#import lilypond_generator
+import test_subprocess
 import recorder
 from tkinter import filedialog
 
@@ -21,7 +22,7 @@ class App:
         
         botao = tk.Button(self.window)
         botao.configure(text='Mostrar Partitura', font="Times 14 bold")
-        botao.configure(command=lilypond_generator.abrir_partitura)
+        botao.configure(command=test_subprocess.abrir_partitura)
         botao.grid(row=0, column=0, sticky ='nsew')
         
         botao2 = tk.Button(self.window)
@@ -40,7 +41,8 @@ class App:
         botao4.grid(row=1, column=1, sticky ='nsew')
         
     def botao_chromagram_clicado(self):
-        C = chroma.make_chroma()
+        print(self.path)
+        C = chroma.make_chroma(self.path)
         nots = chroma.find_notes2(C)
         updated_nots = chroma.update_notes(nots)
         d = chroma.remake_dict(updated_nots)
@@ -49,7 +51,7 @@ class App:
 
       
     def escolher_arquivo(self):     
-        self.path = filedialog.askopenfiles(mode='r') 
+        self.path = filedialog.askopenfilename(defaultextension='.wav')
         
     def iniciar(self):
         self.window.mainloop()

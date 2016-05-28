@@ -7,8 +7,8 @@ import chroma_wave
 from itertools import groupby
 import json
 
-def make_chroma():
-    audio_path = "background.wav"
+def make_chroma(path):
+    audio_path = path
     
     C, sr = chroma_wave.wave_to_chromagram(audio_path)
     
@@ -20,8 +20,6 @@ def make_chroma():
     #plt.show()
     
     return C
-
-C = make_chroma()
 
 def find_notes2(C):
     colunas = len(C[1,:])
@@ -91,10 +89,6 @@ def find_notes2(C):
                         nots[j] = ['b ']
     return nots
 
-nots = find_notes2(C)
-print('nots: (this dict contais the pairs: time: pitch)')
-print(nots)
-
 def update_notes(nots):
     updated_nots = []
     for k, g in groupby(sorted(nots),
@@ -102,19 +96,11 @@ def update_notes(nots):
         updated_nots.append('"{}": {}'.format(list(g)[-1], json.dumps(k)))
     return updated_nots
 
-updated_nots = update_notes(nots)
-print('updated_nots: (nots extracted from the giant dictionary)')
-print(updated_nots)
-
 def remake_dict(updated_nots):
     s = ",".join(updated_nots)
     s = "{" + s + "}"
     d = json.loads(s)
     return d
-
-d = remake_dict(updated_nots)
-print('remade dictionary: (in order to get the nots only by accessing the values)')
-print(d)
 
 def make_input(d):
     the_end = """\\relative c' {\n"""
@@ -142,14 +128,26 @@ def make_input(d):
     return the_end
 '''
 
-the_end = make_input(d)
-print('the_end:')
-print(the_end)
-print('c cis d dis e f fis g gis a ais b')
-
 def save_lilypond(the_end):
     with open('teste.ly', 'w') as f:
         f.writelines(the_end)
+
+#TESTES
+#C = make_chroma('background.wav')  
+#nots = find_notes2(C)
+#print('nots: (this dict contais the pairs: time: pitch)')
+#print(nots)
+#updated_nots = update_notes(nots)
+#print('updated_nots: (nots extracted from the giant dictionary)')
+#print(updated_nots)
+#d = remake_dict(updated_nots)
+#print('remade dictionary: (in order to get the nots only by accessing the values)')
+#print(d)
+#the_end = make_input(d)
+#print('the_end:')
+#print(the_end)
+#print('c cis d dis e f fis g gis a ais b')
+
 
 
 
