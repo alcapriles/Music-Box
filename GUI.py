@@ -4,6 +4,7 @@ import test_subprocess
 import recorder
 from tkinter import filedialog
 import os
+from PIL import Image, ImageTk
 
 class App:
     
@@ -18,11 +19,10 @@ class App:
         self.window.columnconfigure(0, minsize=200)
         self.window.columnconfigure(1, minsize=200)
         self.window.configure(background='white')
-
         
         botao = tk.Button(self.window)
         botao.configure(text='Mostrar Partitura', font="Times 14 bold")
-        botao.configure(command=test_subprocess.abrir_partitura)
+        botao.configure(command=self.abrir_partitura)
         botao.grid(row=3, column=0)
         
         botao2 = tk.Button(self.window)
@@ -48,8 +48,14 @@ class App:
         d = chroma.remake_dict(updated_nots)
         the_end = chroma.make_input(d)
         chroma.save_lilypond(the_end)
-
-      
+        
+    def abrir_partitura(self):
+        path = test_subprocess.abrir_partitura()
+        img = ImageTk.PhotoImage(Image.open(path))
+        panel = tk.Label(self.window, image = img)
+        panel.image = img        
+        panel.grid(column = 1, row = 0, columnspan=3, rowspan=3)
+        
     def escolher_arquivo(self):     
         self.path = filedialog.askopenfilename(defaultextension='wav')
         
@@ -63,8 +69,6 @@ class App:
         recorder.record(path)
         self.path = filedialog.asksaveasfilename(defaultextension='wav')
         os.rename(path, self.path)
-        
-        
 
 musicBox = App()
 musicBox.iniciar()

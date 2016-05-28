@@ -7,5 +7,4 @@ def abrir_partitura():
     
     while True:
         if os.path.isfile('teste.png'):
-            os.startfile('teste.png')
-            break
+            return os.path.abspath('teste.png')
