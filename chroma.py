@@ -26,7 +26,7 @@ def find_notes2(C):
     nots = dict()
     for i in range(12):
         for j in range(colunas):
-            if C[i,j] > 0.8:
+            if C[i,j] > 0.9:
                 if i == 0:
                     if j in dict.keys(nots):
                         nots[j].append('c ')
