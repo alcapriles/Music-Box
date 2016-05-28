@@ -11,7 +11,7 @@ import tkinter as tk
 import chroma
 import lilypond_generator
 import recorder
-import easygui
+from tkinter import filedialog
 
 class App:
     
@@ -58,8 +58,7 @@ class App:
 
       
     def escolher_arquivo(self):     
-        self.path = easygui.fileopenbox() 
-        self.escolheu_arquivo = True
+        self.path = filedialog.askopenfiles(mode='r') 
         
     def iniciar(self):
         self.window.mainloop()

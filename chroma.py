@@ -17,7 +17,7 @@ def make_chroma():
     plt.title('Chromagram')
     plt.colorbar()
     plt.tight_layout()
-    plt.show()
+    #plt.show()
     
     return C
 
