@@ -7,8 +7,18 @@ import chroma_wave
 from itertools import groupby
 import json
 
+import ana_GUI
+
+GUI = ana_GUI.App()
+
+
 def make_chroma():
-    audio_path = "background.wav"
+    if (GUI.escolheu_arquivo == True):
+        path = GUI.path
+    else:
+        path = 'output.wav'    
+    
+    audio_path = path
     
     C, sr = chroma_wave.wave_to_chromagram(audio_path)
     
