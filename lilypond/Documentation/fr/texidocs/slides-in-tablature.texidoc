@@ -1,7 +1,0 @@
-%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
-  texidocfr = "
-Un glissando s'indique dans un @code{TabStaff} tout comme dans un
-@code{Staff}. 
-
-"
-  doctitlefr = "Glissando et tablature"

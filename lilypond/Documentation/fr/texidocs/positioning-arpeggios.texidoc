@@ -1,7 +1,0 @@
-%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
-  texidocfr = "
-L'ajustement de la taille d'une indication d'arpeggio s'effectue au
-travers du positionnement de ses extrémités haute ou basse.
-
-"
-  doctitlefr = "Positionnement des arpeggios"

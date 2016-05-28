@@ -1,9 +1,0 @@
-%% Translation of GIT committish: 5db593aa3737cf8c60f9c4c4fcbe317c2d832766
-  texidocit = "
-Per impostazione predefinita, le parentesi delle volte si estendono per
-tutta l'alternativa, ma si possono accorciare impostando
-@code{voltaSpannerDuration}.  Nell'esempio seguente, la parentesi dura
-una misura, che ha una durata di 3/4.
-
-"
-  doctitleit = "Accorciare le parentesi delle volte"

@@ -1,8 +1,0 @@
-%% Translation of GIT committish: 4d1502a7f3c7929e30da8f35a1d177b19eb34f89
-  texidocfr = "
-Dans le cadre d'un portée polyphonique, les silences multimesures sont
-positionnés différemment selon la voix à laquelle ils appartiennent.
-Le réglage suivant permet néanmoins de les imprimer sur une même ligne.
-
-"
-  doctitlefr = "Fusion de silences multimesures dans une partie polyphonique"

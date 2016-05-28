@@ -1,9 +1,0 @@
-%% Translation of GIT committish: 4d1502a7f3c7929e30da8f35a1d177b19eb34f89
-  texidocfr = "
-Vous pouvez indiquer un changement de tempo pour le fichier MIDI sans
-pour autant l'imprimer.  Il suffit alors de le rendre invisible aux
-interprètes.
-
-"
-  doctitlefr = "Changement de tempo sans indication sur la partition"
-

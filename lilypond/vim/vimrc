@@ -1,4 +1,0 @@
-"
-" Appended to: ~/.vimrc
-"
-set runtimepath+=/usr/local/share/vim/

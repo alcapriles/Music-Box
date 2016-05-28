@@ -1,9 +1,0 @@
-%% Translation of GIT committish: 5db593aa3737cf8c60f9c4c4fcbe317c2d832766
-  texidocit = "
-Di norma compare sulla parentesi del gruppo irregolare solo il
-numeratore del numero del gruppo irregolare. Ma è possibile
-mostrare la frazione num:den del numero del gruppo irregolare
-oppure nascondere del tutto il numero.
-
-"
-  doctitleit = "Modifica del numero del gruppo irregolare"

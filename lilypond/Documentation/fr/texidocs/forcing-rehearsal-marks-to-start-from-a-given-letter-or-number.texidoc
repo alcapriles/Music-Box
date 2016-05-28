@@ -1,7 +1,0 @@
-%% Translation of GIT committish: 4d1502a7f3c7929e30da8f35a1d177b19eb34f89
-  texidocfr = "
-Voici comment initialiser arbitrairement une indication automatique de
-repère, qu'elle soit alphabétique ou numérique :
-
-"
-  doctitlefr = "Fixation arbitraire du numéro de repère de départ"

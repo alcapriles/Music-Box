@@ -1,8 +1,0 @@
-%% Translation of GIT committish: 5db593aa3737cf8c60f9c4c4fcbe317c2d832766
-  texidocit = "
-Si possono creare arpeggi che attraversano i righi in contesti diversi da
-@code{GrandStaff}, @code{PianoStaff} e @code{StaffGroup} se l'incisore
-@code{Span_arpeggio_engraver} è incluso nel contesto @code{Score}.
-
-"
-  doctitleit = "Creare degli arpeggi che attraversano i righi in altri contesti"

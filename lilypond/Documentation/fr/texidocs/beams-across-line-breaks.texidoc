@@ -1,7 +1,0 @@
-%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
-  texidocfr = "
-Il est normalement impensable qu'un saut de ligne tombe au milieu d'une
-ligature.  LilyPond permet néanmoins de l'obtenir.
-
-"
-  doctitlefr = "Ligature au moment d'un saut de ligne"

@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May  9 19:18:06 2016
-
-@author: Ana Capriles
-"""
-
 import os
 
 def abrir_partitura():

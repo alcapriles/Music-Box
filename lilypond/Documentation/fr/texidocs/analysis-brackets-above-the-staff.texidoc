@@ -1,8 +1,0 @@
-%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
-  texidocfr = "
-Les crochets d'analyse viennent par défaut se positionner au-dessous de
-la portée.  L'exemple suivant vous indique comment les faire apparaître
-en surplomb de la portée.
-
-"
-  doctitlefr = "Crochets d'analyse au-dessus de la portée"

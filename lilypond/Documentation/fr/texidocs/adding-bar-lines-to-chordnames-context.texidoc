@@ -1,7 +1,0 @@
-%% Translation of GIT committish: 64d521c30b929ac9be37823df577b8f02c8cf0ee
-  texidocfr = "
-L'ajout du graveur @code{Bar_engraver} à un contexte @code{ChordNames}
-permet d'imprimer les barres de mesure entre les chiffrages.
-
-"
-  doctitlefr = "Chiffrages et barres de mesure"
