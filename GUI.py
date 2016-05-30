@@ -1,10 +1,10 @@
 import tkinter as tk
-import chroma
-import test_subprocess
-import recorder
 from tkinter import filedialog
-import os
 from PIL import Image, ImageTk
+import subprocess
+import os
+import chroma
+import recorder
 
 class App:
     
@@ -41,16 +41,23 @@ class App:
         botao4.grid(row=0, column=0)
         
     def botao_chromagram_clicado(self):
-        print(self.path)
         C = chroma.make_chroma(self.path)
         nots = chroma.find_notes2(C)
         updated_nots = chroma.update_notes(nots)
         d = chroma.remake_dict(updated_nots)
         the_end = chroma.make_input(d)
         chroma.save_lilypond(the_end)
+
+    def gerar_partitura(self):
+        lilypond = r"C:\Program Files (x86)\LilyPond\usr\bin\lilypond.exe"
+        subprocess.run([lilypond, "--png", "teste.ly"])
+        
+        while True:
+            if os.path.isfile('teste.png'):
+                return os.path.abspath('teste.png')    
         
     def abrir_partitura(self):
-        path = test_subprocess.abrir_partitura()
+        path = self.gerar_partitura()
         img = ImageTk.PhotoImage(Image.open(path))
         panel = tk.Label(self.window, image = img)
         panel.image = img        

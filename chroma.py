@@ -3,14 +3,19 @@ import matplotlib.pyplot as plt
 import librosa
 import seaborn
 seaborn.set(style='ticks')
-import chroma_wave
 from itertools import groupby
 import json
+
+def wave_to_chromagram(audio_path):
+    y, sr = librosa.load(audio_path)
+    y_harmonic, y_percussive = librosa.effects.hpss(y)
+    C = librosa.feature.chroma_cqt(y=y_harmonic, sr=sr)
+    return C, sr
 
 def make_chroma(path):
     audio_path = path
     
-    C, sr = chroma_wave.wave_to_chromagram(audio_path)
+    C, sr = wave_to_chromagram(audio_path)
     
     plt.figure(figsize=(12,4))
     librosa.display.specshow(C, sr=sr, x_axis='time', y_axis='chroma', vmin=0, vmax=1)
