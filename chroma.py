@@ -17,12 +17,12 @@ def make_chroma(path):
     
     C, sr = wave_to_chromagram(audio_path)
     
-    plt.figure(figsize=(12,4))
-    librosa.display.specshow(C, sr=sr, x_axis='time', y_axis='chroma', vmin=0, vmax=1)
-    plt.title('Chromagram')
-    plt.colorbar()
-    plt.tight_layout()
-    #plt.show()
+#    plt.figure(figsize=(12,4))
+#    librosa.display.specshow(C, sr=sr, x_axis='time', y_axis='chroma', vmin=0, vmax=1)
+#    plt.title('Chromagram')
+#    plt.colorbar()
+#    plt.tight_layout()
+#    plt.show()
     
     return C
 
@@ -31,7 +31,7 @@ def find_notes2(C):
     nots = dict()
     for i in range(12):
         for j in range(colunas):
-            if C[i,j] > 0.9:
+            if C[i,j] == 1.0:
                 if i == 0:
                     if j in dict.keys(nots):
                         nots[j].append('c ')
@@ -92,6 +92,7 @@ def find_notes2(C):
                         nots[j].append('b ')
                     else:
                         nots[j] = ['b ']
+    print(nots)
     return nots
 
 def update_notes(nots):
@@ -99,61 +100,37 @@ def update_notes(nots):
     for k, g in groupby(sorted(nots),
                         key=nots.get):
         updated_nots.append('"{}": {}'.format(list(g)[-1], json.dumps(k)))
+    print(updated_nots)    
     return updated_nots
+    
+
 
 def remake_dict(updated_nots):
     s = ",".join(updated_nots)
     s = "{" + s + "}"
     d = json.loads(s)
+    print(d)
     return d
 
 def make_input(d):
     the_end = """\\relative c' {\n"""
-    for key,value in d.items():
-        if len(value) == 1:        
-            the_end += value[0]
-        elif len(value) > 1:
+    
+    sorted_notes = sorted(list(d.items()), key=lambda item: int(item[0]))
+    print("sorted_notes: {0}".format(sorted_notes))
+    for i in sorted_notes:
+        if len(i[1]) == 1:        
+            the_end += i[1][0]
+        elif len(i[1]) > 1:
             the_end += '<'
-            for i in range(len(value)):
-                the_end += value[i]
+            for j in range(len(i[1])):
+                the_end += i[1][j]
             the_end += '>'
     the_end += """\n}"""
+    print(the_end)
     return the_end
-
-
-'''
-def make_input(d):
-    the_end = """\\relative c' {\n"""
-    for key,value in d.items():
-        if (value[0] == 'c ') or (value[0] == 'cis ') or (value[0] == 'd ') or (value[0] == 'dis ') or (value[0] == 'e ') or (value[0] == 'f ') or (value[0] == 'fis ') or (value[0] == 'g ') or (value[0] == 'gis ') or (value[0] == 'a ') or (value[0] == 'ais ') or (value[0] == 'b '):        
-            the_end += value[0]
-        else:
-            the_end += '<' + value[0] + '>'
-    the_end += """\n}"""
-    return the_end
-'''
 
 def save_lilypond(the_end):
     with open('teste.ly', 'w') as f:
         f.writelines(the_end)
-
-#TESTES
-#C = make_chroma('background.wav')  
-#nots = find_notes2(C)
-#print('nots: (this dict contais the pairs: time: pitch)')
-#print(nots)
-#updated_nots = update_notes(nots)
-#print('updated_nots: (nots extracted from the giant dictionary)')
-#print(updated_nots)
-#d = remake_dict(updated_nots)
-#print('remade dictionary: (in order to get the nots only by accessing the values)')
-#print(d)
-#the_end = make_input(d)
-#print('the_end:')
-#print(the_end)
-#print('c cis d dis e f fis g gis a ais b')
-
-
-
 
 
