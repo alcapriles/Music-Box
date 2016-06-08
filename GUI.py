@@ -19,6 +19,11 @@ class App:
         self.window.columnconfigure(0, minsize=200)
         self.window.columnconfigure(1, minsize=600)
         self.window.configure(background='white')
+
+        self.w, self.h = self.window.winfo_screenwidth(), self.window.winfo_screenheight()
+        self.window.overrideredirect(1)
+        self.window.geometry("%dx%d+0+0" % (self.w, self.h))
+
         '''
         scrollbar = tk.Scrollbar(self.window)
         scrollbar.grid(row=3)
@@ -26,37 +31,33 @@ class App:
         self.window.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=self.window.yview)
         '''
-        botao = tk.Button(self.window)
-        botao.configure(text='Mostrar Partitura', font="Times 14 bold")
-        botao.configure(command=self.abrir_partitura)
-        botao.grid(row=3, column=0)
-        
-        botao2 = tk.Button(self.window)
-        botao2.configure(text='Gerar Partitura', font="Times 14 bold")
-        botao2.configure(command=self.botao_chromagram_clicado)
-        botao2.grid(row=2, column=0)
-        
-        botao3 = tk.Button(self.window)
-        botao3.configure(text='Gravar', font="Times 14 bold")
-        botao3.configure(command=self.gravar)
-        botao3.grid(row=1, column=0)
         
         botao4 = tk.Button(self.window)
         botao4.configure(text='Escolher arquivo', font="Times 14 bold")
         botao4.configure(command = self.escolher_arquivo)
         botao4.grid(row=0, column=0)
+
+        botao3 = tk.Button(self.window)
+        botao3.configure(text='Gravar', font="Times 14 bold")
+        botao3.configure(command=self.gravar)
+        botao3.grid(row=1, column=0)
+
+        botao = tk.Button(self.window)
+        botao.configure(text='Mostrar Partitura', font="Times 14 bold")
+        botao.configure(command=self.botao_chromagram_clicado)
+        botao.grid(row=2, column=0)
         
         frame_img = tk.Frame(self.window)
         frame_img.grid(row=0, column=1, rowspan=4, sticky="nsew")
         frame_img.rowconfigure(0, minsize=550)
         frame_img.rowconfigure(1, minsize=50)
-        frame_img.columnconfigure(0, minsize=550)
+        frame_img.columnconfigure(0, minsize =550)
         frame_img.columnconfigure(1, minsize=50)
         
         self.canvas_img = tk.Canvas(frame_img,
                                bg='#FFFFFF',
-                               width=550,
-                               height=550)
+                               width=self.w - 250,
+                               height=self.h - 50)
                                
         self.canvas_img.grid(row=0, column=0, sticky="nsew")
         
@@ -79,7 +80,6 @@ class App:
         the_end = chroma.make_input(d)
         chroma.save_lilypond(the_end)
 
-    def gerar_partitura(self):
         lilypond = r"C:\Program Files (x86)\LilyPond\usr\bin\lilypond.exe"
         subprocess.run([lilypond, "--png", "teste.ly"])
         
@@ -136,4 +136,3 @@ class App:
 
 musicBox = App()
 musicBox.iniciar()
-

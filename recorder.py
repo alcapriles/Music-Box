@@ -7,7 +7,7 @@ def record(path):
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 44100
-    RECORD_SECONDS = 10
+    RECORD_SECONDS = 5
     
     p = pyaudio.PyAudio()
     
